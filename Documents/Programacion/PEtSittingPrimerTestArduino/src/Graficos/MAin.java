@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Graficos;
+
+import java.awt.Image;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,6 +17,16 @@ public class MAin extends javax.swing.JFrame {
         initComponents();
         setSize(494, 342);
         setLocationRelativeTo(null);
+        setResizable(false);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Recursos/1.png"));
+
+
+        return retValue;
     }
 
     /**
@@ -30,6 +39,7 @@ public class MAin extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
