@@ -1,23 +1,23 @@
 
 package Graficos;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.List;
+import panamahitek.Arduino.PanamaHitek_Arduino;
 
-/**
- *
- * @author anton
- */
 public class MAin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MAin
-     */
+    
+    PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+    Controls c = new Controls();
+    
     public MAin() {
         initComponents();
         setSize(494, 342);
         setLocationRelativeTo(null);
         setResizable(false);
+        getPorts();
     }
     
     @Override
@@ -29,6 +29,24 @@ public class MAin extends javax.swing.JFrame {
         return retValue;
     }
 
+   
+    public void getPorts() {
+        jcbPuertos.removeAllItems();
+        if (Arduino.getPortsAvailable() > 0) {
+            List lst = Arduino.getSerialPorts();
+            for(int i=0; i<lst.size(); i++){
+                jcbPuertos.addItem(lst.get(i));
+            }
+            //Arduino.getSerialPorts().forEach(i -> jComboBoxPorts.addItem(i));
+            jbConectar.setEnabled(true);
+            jbConectar.setBackground(new Color(255, 255, 255));
+        } else {
+            jbConectar.setEnabled(false);
+            jbConectar.setBackground(new Color(204, 204, 204));
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,22 +56,44 @@ public class MAin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jcbPuertos = new javax.swing.JComboBox<>();
+        jbConectar = new javax.swing.JButton();
+        jbDesconectar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(null);
+
+        jcbPuertos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbPuertos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbPuertosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcbPuertos);
+        jcbPuertos.setBounds(135, 75, 120, 47);
+
+        jbConectar.setText("Conectar");
+        jPanel1.add(jbConectar);
+        jbConectar.setBounds(120, 180, 140, 50);
+
+        jbDesconectar.setText("Desconectar");
+        jPanel1.add(jbDesconectar);
+        jbDesconectar.setBounds(290, 180, 130, 50);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 490, 340);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbPuertosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPuertosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbPuertosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,5 +131,9 @@ public class MAin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbConectar;
+    private javax.swing.JButton jbDesconectar;
+    private javax.swing.JComboBox<String> jcbPuertos;
     // End of variables declaration//GEN-END:variables
 }
