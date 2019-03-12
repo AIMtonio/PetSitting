@@ -9,11 +9,11 @@ create table control(id_control int(9) primary key auto_increment,
 cantidad_alimento double(9,2), cada_hora int(2), cantidad_veces int(2))Engine=Innodb;
 
 create table usuario(id_usuario int(9) primary key auto_increment,
-nombre varchar(200)not null, ap_pat varchar(200)not null, ap_mat varchar(200)not null,
+nombre varchar(200)not null, apellidos varchar(200)not null,
 numero_celular varchar(10)unique, usuario varchar(200)not null, password varchar(200)not null)Engine=Innodb;
 
 create table mascota(id_mascota int(9) primary key auto_increment,
-nombre varchar(200)not null, edad int(2), peso double(9,2), fecha_creacion time,
+nombre varchar(200)not null, edad int(2), peso double(9,2), raza varchar(200)not null,fecha_creacion time,
 tipo_masc int(9), id_usuario int(9), id_control int(9),
 foreign key (tipo_masc)references tipo(id_tipo)on update cascade,
 foreign key (id_usuario)references usuario(id_usuario)on update cascade,

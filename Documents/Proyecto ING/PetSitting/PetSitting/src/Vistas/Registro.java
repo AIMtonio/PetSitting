@@ -10,6 +10,7 @@ public class Registro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(1005, 609);
+        setLocation(200, 250);
     }
 
     @SuppressWarnings("unchecked")
@@ -187,8 +188,23 @@ public class Registro extends javax.swing.JFrame {
         String con=jpfPassword.getText();
         String cel=jtfNumeroTelefono.getText();
         String con2=jpfPasswordRepetible.getText();
-          if(con.equalsIgnoreCase(con2)){
-            if(cel.length()>10){
+        if(jtfNombre.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte nombre");
+        }else if(jtfApepat.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte apellido");
+        }else if(jtfApemat.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte apellido m");
+        }else if(jtfUsuario.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte usuario");
+        }else if(jpfPassword.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte contraseña");
+        }else if(jtfNumeroTelefono.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte celular");
+        }else if(jpfPasswordRepetible.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte Confirmacion de contraseña");
+        }else{
+        if(con.equalsIgnoreCase(con2)){
+            if(cel.length()>10 ||cel.length()<10){
             JOptionPane.showMessageDialog(null, "Formato invalido");
             }else{
         Registros a=new Registros(nom,apepa,apema,usu,con,cel);
@@ -197,9 +213,14 @@ public class Registro extends javax.swing.JFrame {
             abrirIndex();
          }
             }else{
-    JOptionPane.showMessageDialog(null, "Contraseña incorrecta repita acción");
+        JOptionPane.showMessageDialog(null, "Contraseña incorrecta repita acción");
 
         }
+        }
+        
+        
+        
+          
         
         
         

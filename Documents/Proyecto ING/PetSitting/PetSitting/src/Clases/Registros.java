@@ -16,6 +16,9 @@ public class Registros {
     static String nombre, apM,apP,usuario, contra;
     String cel;
 
+    public Registros() {
+    }
+
     public Registros(String nombre, String apM, String apP, String usuario, String contra, String cel) {
         this.nombre = nombre;
         this.apM = apM;

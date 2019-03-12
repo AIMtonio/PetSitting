@@ -14,7 +14,8 @@ public class Index extends javax.swing.JFrame {
         this.setSize(856, 559);
         setResizable(false);
         setLocationRelativeTo(null);
-        
+        setLocation(250, 250);
+        validarUsuarios();
     }
 
     /* @Override
@@ -167,6 +168,11 @@ public class Index extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void acceder() {
+        
+    }
+
+    private void validarUsuarios() {
+        Registros a= new Registros();
         
     }
 }

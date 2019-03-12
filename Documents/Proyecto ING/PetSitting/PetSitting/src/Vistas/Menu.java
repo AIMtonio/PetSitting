@@ -33,6 +33,7 @@ String contra;
         idprueba.setText(prueba);
         Contraprueba.setVisible(false);
         idprueba.setVisible(false);
+        setLocation(250, 250);
     }
     
 
@@ -59,13 +60,15 @@ String contra;
         jcbRaza = new javax.swing.JComboBox<>();
         jcbEdad = new javax.swing.JComboBox<>();
         jbtEnviar = new javax.swing.JButton();
-        jbtCancelar = new javax.swing.JButton();
         jbtSalir = new javax.swing.JButton();
         jlbUsuario = new javax.swing.JLabel();
         jlbLogoproyecto = new javax.swing.JLabel();
         Contraprueba = new javax.swing.JLabel();
         idprueba = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,27 +112,29 @@ String contra;
 
         jcbRaza.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-" }));
+        jcbRaza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbRazaActionPerformed(evt);
+            }
+        });
         jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 227, 230, 38));
 
         jcbEdad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" }));
+        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "- de 6 meses", "+ de 6 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+10" }));
+        jcbEdad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEdadActionPerformed(evt);
+            }
+        });
         jpnMenu.add(jcbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 284, 230, 38));
 
-        jbtEnviar.setText("Enviar");
+        jbtEnviar.setText("Registrar");
         jbtEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtEnviarActionPerformed(evt);
             }
         });
-        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 425, 112, 34));
-
-        jbtCancelar.setText("Cancelar");
-        jbtCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCancelarActionPerformed(evt);
-            }
-        });
-        jpnMenu.add(jbtCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 425, 112, 34));
+        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 112, 30));
 
         jbtSalir.setText("Salir");
         jbtSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +145,6 @@ String contra;
         jpnMenu.add(jbtSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 110, 30));
 
         jlbUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jlbUsuario.setText("aaa");
         jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 190, 40));
 
         jlbLogoproyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo Proyecto icono.png"))); // NOI18N
@@ -155,6 +159,16 @@ String contra;
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Bienvenido");
         jpnMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 290, 40));
+
+        jButton1.setText("Consultar");
+        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 110, 30));
+
+        jButton2.setText("Modificar");
+        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 110, 30));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Inserte los datos de la mascota ");
+        jpnMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,16 +192,39 @@ String contra;
 
     private void jbtEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEnviarActionPerformed
         // TODO add your handling code here:
+        String mascota=jtfNombreMascota.getText();
+        String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
+        String raza=String.valueOf(jcbRaza.getSelectedItem());
+        String edad=String.valueOf(jcbEdad.getSelectedItem());
+        String peso=jtfPeso.getText();
+        if(jtfNombreMascota.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte nombre");
+        }else if(jcbTipoMascota.getSelectedItem().equals("-Seleccione-")){
+            JOptionPane.showMessageDialog(null, "Seleccione tipo");
+        }else if(jcbRaza.getSelectedItem().equals("-Seleccione-")){
+            JOptionPane.showMessageDialog(null, "Seleccione raza");
+        }else if(jcbEdad.getSelectedItem().equals("-Seleccione-")){
+            JOptionPane.showMessageDialog(null, "Seleccione edad");
+        }else if(jtfPeso.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte peso");
+        }else{
+            
+        }
+        
     }//GEN-LAST:event_jbtEnviarActionPerformed
-
-    private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtCancelarActionPerformed
 
     private void jbtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalirActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jbtSalirActionPerformed
+
+    private void jcbEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEdadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEdadActionPerformed
+
+    private void jcbRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRazaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbRazaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,8 +234,10 @@ String contra;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Contraprueba;
     private javax.swing.JLabel idprueba;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton jbtCancelar;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbtEnviar;
     private javax.swing.JButton jbtSalir;
     private javax.swing.JComboBox<String> jcbEdad;
