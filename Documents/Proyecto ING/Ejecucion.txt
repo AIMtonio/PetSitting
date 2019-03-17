@@ -1,0 +1,4 @@
+drop database petsitting;
+create database petsitting;
+use petsitting;
+source E:\Septimo\ProyectoING\petsitting.sql;

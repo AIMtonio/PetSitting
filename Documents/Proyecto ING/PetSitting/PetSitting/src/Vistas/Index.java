@@ -14,7 +14,7 @@ public class Index extends javax.swing.JFrame {
         this.setSize(856, 559);
         setResizable(false);
         setLocationRelativeTo(null);
-        setLocation(250, 250);
+        setLocation(250, 150);
         validarUsuarios();
     }
 
@@ -98,9 +98,18 @@ public class Index extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRegistrarActionPerformed
-        this.setVisible(false);
-        Registro b=new Registro();
-        b.setVisible(true);
+        Registros c=new Registros();
+        c.consultarr();
+        String ver=c.pruebar;
+        System.out.println(ver);
+        if(ver==null){
+            this.setVisible(false);
+            Registro b=new Registro();
+            b.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Solo se permite un registro");
+        }
+        
     }//GEN-LAST:event_jbtRegistrarActionPerformed
 
     private void jbtIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtIniciarActionPerformed

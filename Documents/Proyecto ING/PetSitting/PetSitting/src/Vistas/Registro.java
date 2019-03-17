@@ -10,7 +10,7 @@ public class Registro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(1005, 609);
-        setLocation(200, 250);
+        setLocation(250, 150);
     }
 
     @SuppressWarnings("unchecked")
@@ -20,12 +20,10 @@ public class Registro extends javax.swing.JFrame {
         jpnRegistrar = new javax.swing.JPanel();
         jlbNombre = new javax.swing.JLabel();
         jlbApepat = new javax.swing.JLabel();
-        jlbApemat = new javax.swing.JLabel();
         jlbUsuario = new javax.swing.JLabel();
         jlbPassword = new javax.swing.JLabel();
         jtfNombre = new javax.swing.JTextField();
         jtfApepat = new javax.swing.JTextField();
-        jtfApemat = new javax.swing.JTextField();
         jtfUsuario = new javax.swing.JTextField();
         jpfPassword = new javax.swing.JPasswordField();
         jlbPasswordrepetible = new javax.swing.JLabel();
@@ -46,17 +44,12 @@ public class Registro extends javax.swing.JFrame {
         jlbNombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbNombre.setText("Nombre:");
         jpnRegistrar.add(jlbNombre);
-        jlbNombre.setBounds(530, 90, 130, 30);
+        jlbNombre.setBounds(530, 120, 130, 30);
 
         jlbApepat.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbApepat.setText("Apellido Paterno:");
         jpnRegistrar.add(jlbApepat);
-        jlbApepat.setBounds(460, 130, 270, 40);
-
-        jlbApemat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jlbApemat.setText("Apellido Materno:");
-        jpnRegistrar.add(jlbApemat);
-        jlbApemat.setBounds(510, 190, 184, 30);
+        jlbApepat.setBounds(450, 170, 270, 40);
 
         jlbUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbUsuario.setText("Usuario");
@@ -75,7 +68,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jtfNombre);
-        jtfNombre.setBounds(730, 90, 230, 41);
+        jtfNombre.setBounds(730, 110, 230, 41);
 
         jtfApepat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtfApepat.addActionListener(new java.awt.event.ActionListener() {
@@ -89,16 +82,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jtfApepat);
-        jtfApepat.setBounds(730, 140, 230, 34);
-
-        jtfApemat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jtfApemat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfApematKeyTyped(evt);
-            }
-        });
-        jpnRegistrar.add(jtfApemat);
-        jtfApemat.setBounds(730, 190, 230, 34);
+        jtfApepat.setBounds(730, 170, 230, 34);
 
         jtfUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -183,7 +167,6 @@ public class Registro extends javax.swing.JFrame {
     private void jbtAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAgregarActionPerformed
         String nom=jtfNombre.getText();
         String apepa=jtfApepat.getText();
-        String apema=jtfApemat.getText();
         String usu=jtfUsuario.getText();
         String con=jpfPassword.getText();
         String cel=jtfNumeroTelefono.getText();
@@ -192,8 +175,6 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inserte nombre");
         }else if(jtfApepat.getText().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Inserte apellido");
-        }else if(jtfApemat.getText().equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "Inserte apellido m");
         }else if(jtfUsuario.getText().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Inserte usuario");
         }else if(jpfPassword.getText().equalsIgnoreCase("")){
@@ -207,7 +188,7 @@ public class Registro extends javax.swing.JFrame {
             if(cel.length()>10 ||cel.length()<10){
             JOptionPane.showMessageDialog(null, "Formato invalido");
             }else{
-        Registros a=new Registros(nom,apepa,apema,usu,con,cel);
+        Registros a=new Registros(nom,apepa,usu,con,cel);
         a.registrar();
             JOptionPane.showMessageDialog(null, "Registro exitoso");
             abrirIndex();
@@ -217,12 +198,6 @@ public class Registro extends javax.swing.JFrame {
 
         }
         }
-        
-        
-        
-          
-        
-        
         
     }//GEN-LAST:event_jbtAgregarActionPerformed
 
@@ -250,24 +225,7 @@ public class Registro extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Solo letras","Advertencia",JOptionPane.WARNING_MESSAGE);
         }
         
-        char esp=evt.getKeyChar();
-        if(Character.isSpace(car)){
-        jtfApepat.setText(null);
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "No se aceptan espacios","Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
-        
     }//GEN-LAST:event_jtfApepatKeyTyped
-
-    private void jtfApematKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApematKeyTyped
-        // TODO add your handling code here:
-        char car=evt.getKeyChar();
-        if(Character.isDigit(car)){
-        getToolkit().beep();
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "Solo letras","Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_jtfApematKeyTyped
 
     private void jtfNumeroTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNumeroTelefonoKeyTyped
         // TODO add your handling code here:
@@ -329,7 +287,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jblUsuario;
     private javax.swing.JButton jbtAgregar;
-    private javax.swing.JLabel jlbApemat;
     private javax.swing.JLabel jlbApepat;
     private javax.swing.JLabel jlbNombre;
     private javax.swing.JLabel jlbNumeroTelefono;
@@ -339,7 +296,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JPasswordField jpfPasswordRepetible;
     private javax.swing.JPanel jpnRegistrar;
-    private javax.swing.JTextField jtfApemat;
     private javax.swing.JTextField jtfApepat;
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfNumeroTelefono;

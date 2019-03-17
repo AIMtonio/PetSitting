@@ -8,6 +8,7 @@ package Vistas;
 import Clases.Conexion;
 import Clases.Registros;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -33,7 +34,7 @@ String contra;
         idprueba.setText(prueba);
         Contraprueba.setVisible(false);
         idprueba.setVisible(false);
-        setLocation(250, 250);
+        setLocation(250, 150);
     }
     
 
@@ -101,6 +102,11 @@ String contra;
                 jcbTipoMascotaMouseClicked(evt);
             }
         });
+        jcbTipoMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbTipoMascotaActionPerformed(evt);
+            }
+        });
         jpnMenu.add(jcbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 171, 230, 38));
 
         jlbTipoMascota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -111,7 +117,6 @@ String contra;
         jpnMenu.add(jtfPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 340, 230, 44));
 
         jcbRaza.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jcbRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-" }));
         jcbRaza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbRazaActionPerformed(evt);
@@ -120,7 +125,7 @@ String contra;
         jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 227, 230, 38));
 
         jcbEdad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "- de 6 meses", "+ de 6 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+10" }));
+        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "- de 6 meses", "de 6 a 11 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+10" }));
         jcbEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbEdadActionPerformed(evt);
@@ -145,7 +150,7 @@ String contra;
         jpnMenu.add(jbtSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 110, 30));
 
         jlbUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 190, 40));
+        jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 190, 40));
 
         jlbLogoproyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo Proyecto icono.png"))); // NOI18N
         jpnMenu.add(jlbLogoproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 130));
@@ -192,23 +197,33 @@ String contra;
 
     private void jbtEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEnviarActionPerformed
         // TODO add your handling code here:
-        String mascota=jtfNombreMascota.getText();
-        String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
-        String raza=String.valueOf(jcbRaza.getSelectedItem());
-        String edad=String.valueOf(jcbEdad.getSelectedItem());
-        String peso=jtfPeso.getText();
-        if(jtfNombreMascota.getText().equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "Inserte nombre");
-        }else if(jcbTipoMascota.getSelectedItem().equals("-Seleccione-")){
-            JOptionPane.showMessageDialog(null, "Seleccione tipo");
-        }else if(jcbRaza.getSelectedItem().equals("-Seleccione-")){
-            JOptionPane.showMessageDialog(null, "Seleccione raza");
-        }else if(jcbEdad.getSelectedItem().equals("-Seleccione-")){
-            JOptionPane.showMessageDialog(null, "Seleccione edad");
-        }else if(jtfPeso.getText().equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "Inserte peso");
+        Registros c=new Registros();
+        c.consultarm();
+        String ver=c.p;
+        System.out.println(ver);
+        if(ver==null){
+            String mascota=jtfNombreMascota.getText();
+            String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
+            String raza=String.valueOf(jcbRaza.getSelectedItem());
+            int edad=Integer.parseInt(String.valueOf(jcbEdad.getSelectedItem()));
+            Double peso=Double.parseDouble(jtfPeso.getText());
+            if(jtfNombreMascota.getText().equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(null, "Inserte nombre");
+            }else if(jcbTipoMascota.getSelectedItem().equals("-Seleccione-")){
+                JOptionPane.showMessageDialog(null, "Seleccione tipo");
+            }else if(jcbRaza.getSelectedItem().equals("-Seleccione-")){
+                JOptionPane.showMessageDialog(null, "Seleccione raza");
+            }else if(jcbEdad.getSelectedItem().equals("-Seleccione-")){
+                JOptionPane.showMessageDialog(null, "Seleccione edad");
+            }else if(jtfPeso.getText().equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(null, "Inserte peso");
+            }else{
+            Registros r=new Registros(mascota,tipo,raza,edad,peso);
+            r.registrarmascota();
+            JOptionPane.showMessageDialog(null, "Registro exitoso");
+            }   
         }else{
-            
+            JOptionPane.showMessageDialog(null, "Solo se permite un registro de mascota");
         }
         
     }//GEN-LAST:event_jbtEnviarActionPerformed
@@ -225,6 +240,31 @@ String contra;
     private void jcbRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRazaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbRazaActionPerformed
+
+    private void jcbTipoMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoMascotaActionPerformed
+        // TODO add your handling code here:
+        Registros w=new Registros();
+        String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
+        switch(tipo){
+            case "Perro": 
+                limpiar();
+                ObtenerP();
+            break;
+            case "Gato": 
+                limpiar();
+                ObtenerG();
+            break;
+            case "Conejo": 
+                limpiar();
+                ObtenerC();
+            break;
+            case "Roedor": 
+                limpiar();
+                ObtenerR();
+            break;
+        }
+        
+    }//GEN-LAST:event_jcbTipoMascotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,7 +309,66 @@ String contra;
             a.printStackTrace();
         }
     } 
-
-
+    private void ObtenerP(){
+        jcbRaza.addItem("-Seleccione-");
+        try{
+            Conexion obj= new Conexion();
+            Statement sentencia=obj.getCon().createStatement();
+            String sql="select raza from tipo where tipo_mascota='Perro';";
+            ResultSet registro=sentencia.executeQuery(sql);
+            while(registro.next()){
+               jcbRaza.addItem(registro.getString(1));
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos",JOptionPane.QUESTION_MESSAGE);
+        }
+    
+    }
+    private void ObtenerG(){
+        jcbRaza.addItem("-Seleccione-");
+        try{
+            Conexion obj= new Conexion();
+            Statement sentencia=obj.getCon().createStatement();
+            String sql="select raza from tipo where tipo_mascota='Gato';";
+            ResultSet registro=sentencia.executeQuery(sql);
+            while(registro.next()){
+               jcbRaza.addItem(registro.getString(1));
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos",JOptionPane.QUESTION_MESSAGE);
+        }
+    }
+    private void ObtenerC(){
+        jcbRaza.addItem("-Seleccione-");
+        try{
+            Conexion obj= new Conexion();
+            Statement sentencia=obj.getCon().createStatement();
+            String sql="select raza from tipo where tipo_mascota='Conejo';";
+            ResultSet registro=sentencia.executeQuery(sql);
+            while(registro.next()){
+               jcbRaza.addItem(registro.getString(1));
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos",JOptionPane.QUESTION_MESSAGE);
+        }
+    }
+    private void ObtenerR(){
+        jcbRaza.addItem("-Seleccione-");
+        try{
+            Conexion obj= new Conexion();
+            Statement sentencia=obj.getCon().createStatement();
+            String sql="select raza from tipo where tipo_mascota='Roedor';";
+            ResultSet registro=sentencia.executeQuery(sql);
+            while(registro.next()){
+               jcbRaza.addItem(registro.getString(1));
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos",JOptionPane.QUESTION_MESSAGE);
+        }
+    }
+    
+    private void limpiar(){
+        jcbRaza.removeAllItems();
+    }
 }
 
