@@ -26,6 +26,46 @@ public class Registros {
     int edad;
     double peso;
 
+    public String getNomM() {
+        return nomM;
+    }
+
+    public void setNomM(String nomM) {
+        this.nomM = nomM;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
     public Registros(String nomM, String tipo, String raza, int edad, double peso) {
         this.nomM = nomM;
         this.tipo = tipo;
@@ -140,6 +180,7 @@ public class Registros {
             Statement sentencia=obj.getCon().createStatement();
             String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
+            JOptionPane.showInputDialog(null,"Tu mascota fue registradas");
         }catch(Exception a){
             a.printStackTrace();
         }
@@ -154,6 +195,47 @@ public class Registros {
             a.printStackTrace();
         }
     }
-   
+    String buscarmas;
+    public void consultarMascota(){
+        try{
+        buscarmas=JOptionPane.showInputDialog(null,"Ingresa el nombre de tu mascota","Buscar mascota",JOptionPane.QUESTION_MESSAGE);
+        if(buscarmas==null){
+            
+        }else{
+        Conexion obj= new Conexion();
+        Statement sentencia=obj.getCon().createStatement();
+            System.out.println(buscarmas);
+        String sql="select * from mascota where nombre='"+buscarmas+"';";
+        ResultSet registro=sentencia.executeQuery(sql);
+        while(registro.next()){
+            nomM=registro.getString(2);
+            edad=registro.getInt(3);
+            peso=registro.getDouble(4);
+            raza=registro.getString(5);
+            tipo=registro.getString(7);
+        }
+        }
+        }catch(Exception a){
+            a.printStackTrace();
+            JOptionPane.showInputDialog(null,"No se encontro a la mascota con ese nombre");
+        }
+        
+    }
     
+    public void modificarmascota(){
+        try{
+            Conexion obj= new Conexion();
+            Statement sentencia=obj.getCon().createStatement();
+            String sql="update mascota set nombre='"+nomM+"',"
+                    + "edad='"+edad+"',"
+                    + "peso='"+peso+"',"
+                    + "raza='"+raza+"',"
+                    + "tipo_masc='"+tipo+"'"
+                    + "where nombre='"+nomM+"';";
+            sentencia.execute(sql);
+            JOptionPane.showInputDialog(null,"Los datos de tu mascota se a modificado");
+        }catch(Exception a){
+            a.printStackTrace();
+        }
+    }
 }
