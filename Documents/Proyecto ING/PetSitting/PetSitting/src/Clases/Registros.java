@@ -180,7 +180,7 @@ public class Registros {
             Statement sentencia=obj.getCon().createStatement();
             String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
-            JOptionPane.showInputDialog(null,"Tu mascota fue registradas");
+            JOptionPane.showMessageDialog(null,"Tu mascota fue registradas");
         }catch(Exception a){
             a.printStackTrace();
         }
@@ -233,7 +233,7 @@ public class Registros {
                     + "tipo_masc='"+tipo+"'"
                     + "where nombre='"+nomM+"';";
             sentencia.execute(sql);
-            JOptionPane.showInputDialog(null,"Los datos de tu mascota se a modificado");
+            JOptionPane.showMessageDialog(null,"Los datos de tu mascota se a modificado");
         }catch(Exception a){
             a.printStackTrace();
         }
