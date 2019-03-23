@@ -23,8 +23,7 @@ public class Registros {
     String cel;
     
     String nomM,tipo,raza;
-    int edad;
-    double peso;
+    double peso, edad;
 
     public String getNomM() {
         return nomM;
@@ -50,11 +49,11 @@ public class Registros {
         this.raza = raza;
     }
 
-    public int getEdad() {
+    public double getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(double edad) {
         this.edad = edad;
     }
 
@@ -66,7 +65,7 @@ public class Registros {
         this.peso = peso;
     }
 
-    public Registros(String nomM, String tipo, String raza, int edad, double peso) {
+    public Registros(String nomM, String tipo, String raza, double edad, double peso) {
         this.nomM = nomM;
         this.tipo = tipo;
         this.raza = raza;

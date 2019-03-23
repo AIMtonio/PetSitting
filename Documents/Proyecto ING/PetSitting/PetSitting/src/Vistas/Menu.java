@@ -70,30 +70,31 @@ String contra;
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jpnMenu.setBackground(new java.awt.Color(255, 255, 255));
         jpnMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlbNombreMascota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbNombreMascota.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbNombreMascota.setText("Nombre de la mascota:");
-        jpnMenu.add(jlbNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 119, 182, 38));
+        jpnMenu.add(jlbNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 300, 40));
 
-        jlbRaza.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbRaza.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbRaza.setText("Raza:");
-        jpnMenu.add(jlbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 226, 182, 38));
+        jpnMenu.add(jlbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 70, 30));
 
-        jlbEdad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbEdad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbEdad.setText("Edad:");
-        jpnMenu.add(jlbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 283, 182, 38));
+        jpnMenu.add(jlbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 60, 40));
 
-        jlbPeso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbPeso.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbPeso.setText("Peso:");
-        jpnMenu.add(jlbPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 341, 182, 38));
+        jpnMenu.add(jlbPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 70, 40));
 
         jtfNombreMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jpnMenu.add(jtfNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 121, 230, 38));
+        jpnMenu.add(jtfNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 230, 38));
 
         jcbTipoMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbTipoMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Perro", "Gato", "Conejo", "Roedor" }));
@@ -107,14 +108,14 @@ String contra;
                 jcbTipoMascotaActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 171, 230, 38));
+        jpnMenu.add(jcbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 230, 38));
 
-        jlbTipoMascota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbTipoMascota.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbTipoMascota.setText("Tipo de Mascota");
-        jpnMenu.add(jlbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 170, 182, 38));
+        jpnMenu.add(jlbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 190, 40));
 
         jtfPeso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jpnMenu.add(jtfPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 340, 230, 44));
+        jpnMenu.add(jtfPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 230, 44));
 
         jcbRaza.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-" }));
@@ -123,24 +124,25 @@ String contra;
                 jcbRazaActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 227, 230, 38));
+        jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 230, 38));
 
         jcbEdad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "- de 6 meses", "de 6 a 11 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+10" }));
+        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "menos de 6 meses", "de 6 a 11 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+10" }));
         jcbEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbEdadActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 284, 230, 38));
+        jpnMenu.add(jcbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 230, 38));
 
+        jbtEnviar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jbtEnviar.setText("Registrar");
         jbtEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtEnviarActionPerformed(evt);
             }
         });
-        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 112, 30));
+        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 180, 60));
 
         jbtSalir.setText("Cerar Sesion");
         jbtSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -150,53 +152,59 @@ String contra;
         });
         jpnMenu.add(jbtSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, 110, 30));
 
-        jlbUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 190, 40));
+        jlbUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 36)); // NOI18N
+        jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 190, 40));
 
         jlbLogoproyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo Proyecto icono.png"))); // NOI18N
         jpnMenu.add(jlbLogoproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 130));
-
-        Contraprueba.setText("jLabel1");
         jpnMenu.add(Contraprueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-
-        idprueba.setText("jLabel1");
         jpnMenu.add(idprueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 36)); // NOI18N
         jLabel1.setText("Bienvenido");
         jpnMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 290, 40));
 
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton1.setText("Consultar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 110, 30));
+        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 200, 60));
 
+        jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 110, 30));
+        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 190, 60));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Inserte los datos de la mascota ");
         jpnMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 210, 30));
 
+        jButton3.setText("Prueba");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jpnMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         pack();
@@ -216,7 +224,15 @@ String contra;
             String mascota=jtfNombreMascota.getText();
             String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
             String raza=String.valueOf(jcbRaza.getSelectedItem());
-            int edad=Integer.parseInt(String.valueOf(jcbEdad.getSelectedItem()));
+            //Agregar validacion
+            String edadTemportal=null;
+            edadTemportal=(String.valueOf(jcbEdad.getSelectedItem()));
+            if(edadTemportal.equalsIgnoreCase("menos de 6 meses")){
+         
+            double edad=0.3;
+            }else if(edadTemportal.equalsIgnoreCase("de 6 a 11 meses")){
+            double edad=0.8;
+            // int edad=Integer.parseInt(String.valueOf(jcbEdad.getSelectedItem()));
             Double peso=Double.parseDouble(jtfPeso.getText());
             if(jtfNombreMascota.getText().equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(null, "Inserte nombre");
@@ -228,6 +244,7 @@ String contra;
                 JOptionPane.showMessageDialog(null, "Seleccione edad");
             }else if(jtfPeso.getText().equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(null, "Inserte peso");
+            
             }else{
             Registros r=new Registros(mascota,tipo,raza,edad,peso);
             r.registrarmascota();
@@ -235,7 +252,7 @@ String contra;
         }else{
             JOptionPane.showMessageDialog(null, "Solo se permite un registro de mascota");
         }
-        
+        }
     }//GEN-LAST:event_jbtEnviarActionPerformed
 
     private void jbtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalirActionPerformed
@@ -331,6 +348,17 @@ String contra;
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String edadTemportal=null;
+            edadTemportal=(String.valueOf(jcbEdad.getSelectedItem()));
+            if(edadTemportal.equalsIgnoreCase("de 6 meses")){
+                JOptionPane.showMessageDialog(null, "es igual");
+            }else{
+                JOptionPane.showMessageDialog(null, "es diferente");
+            }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,6 +369,7 @@ String contra;
     private javax.swing.JLabel idprueba;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbtEnviar;

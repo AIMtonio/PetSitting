@@ -108,8 +108,9 @@ public class Index extends javax.swing.JFrame {
             b.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Solo se permite un registro");
+            String codigo=JOptionPane.showInputDialog(null,"h");
+            JOptionPane.showMessageDialog(null, "Texto " + codigo);
         }
-        
     }//GEN-LAST:event_jbtRegistrarActionPerformed
 
     private void jbtIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtIniciarActionPerformed
@@ -126,7 +127,6 @@ public class Index extends javax.swing.JFrame {
             Menu b=new Menu();
             b.setVisible(true);
         }
-
     }//GEN-LAST:event_jbtIniciarActionPerformed
 
     /**

@@ -1,25 +1,35 @@
-
-
+drop database petsitting;
 create database petsitting;
 
 use petsitting;
 
-create table tipo(id_tipo int(9) primary key auto_increment,
-tipo_mascota varchar(100)not null, raza varchar(200)not null)Engine=Innodb;
+create table tipo(id_tipo int(9)primary key auto_increment,
+tipo_mascota varchar(100)not null,
+raza varchar(200)not null)Engine=Innodb;
 
-create table control(id_control int(9) primary key auto_increment,
-cantidad_alimento double(9,2), cada_hora int(2), cantidad_veces int(2))Engine=Innodb;
+create table control(id_control int(9)primary key auto_increment,
+cantidad_alimento double(9,2),
+cada_hora int(2),
+cantidad_veces int(2))Engine=Innodb;
 
-create table usuario(id_usuario int(9) primary key auto_increment,
-nombre varchar(200)not null, apellidos varchar(200)not null,
-numero_celular varchar(10)unique, usuario varchar(200)not null, password varchar(200)not null)Engine=Innodb;
+create table usuario(id_usuario int(9)primary key auto_increment,
+nombre varchar(200)not null,
+apellidos varchar(200)not null,
+numero_celular varchar(10)unique,
+usuario varchar(200)not null,
+password varchar(200)not null)Engine=Innodb;
 
-create table mascota(id_mascota int(9) primary key auto_increment,
-nombre varchar(200)not null, edad int(2), peso double(9,2), raza varchar(200)not null,fecha_creacion time,
-tipo_masc varchar(200)not null, id_usuario int(9), id_control int(9),
+create table mascota(id_mascota int(9)primary key auto_increment,
+nombre varchar(200)not null,
+edad double(9,2),
+peso double(9,2),
+raza varchar(200)not null,
+fecha_creacion date,
+tipo_masc varchar(200)not null,
+id_usuario int(9),
+id_control int(9),
 foreign key (id_usuario)references usuario(id_usuario)on update cascade,
 foreign key (id_control)references control(id_control)on update cascade)Engine=Innodb;
-
 
 INSERT INTO tipo VALUES(null,"Perro","Labrador");
 INSERT INTO tipo VALUES(null,"Perro","Pugs");
@@ -89,3 +99,5 @@ INSERT INTO tipo VALUES(null,"Roedor","Hámster Ruso");
 INSERT INTO tipo VALUES(null,"Roedor","Hámster Enano");
 INSERT INTO tipo VALUES(null,"Roedor","Chinchilla de cola larga");
 INSERT INTO tipo VALUES(null,"Roedor","Cricetulus Griseus(Hámster Chino)");
+
+

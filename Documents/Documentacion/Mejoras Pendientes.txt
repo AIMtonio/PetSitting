@@ -1,0 +1,12 @@
+Registrar 2 macotas numero de serie
+prevenir cuando no hay electricidad
+checar posibles baterias
+Como restablecer la contraseña
+Si se me olvida apagarlo
+Cuando una mascota esta enferma
+Envio de notificacion
+
+Detallas gasto de mensajes.
+Cambiar tipo de dato: mascota.edad a double
+
+
