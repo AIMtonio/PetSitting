@@ -71,6 +71,8 @@ String contra;
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jcenfermedad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,7 +144,7 @@ String contra;
                 jbtEnviarActionPerformed(evt);
             }
         });
-        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 180, 60));
+        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 180, 60));
 
         jbtSalir.setText("Cerar Sesion");
         jbtSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +173,7 @@ String contra;
                 jButton1ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 200, 60));
+        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 200, 60));
 
         jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton2.setText("Modificar");
@@ -180,7 +182,7 @@ String contra;
                 jButton2ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 190, 60));
+        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 190, 60));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Inserte los datos de la mascota ");
@@ -192,19 +194,29 @@ String contra;
                 jButton3ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
+        jpnMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        jLabel3.setText("Padece alguna efermedad?");
+        jpnMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 170, 30));
+
+        jcenfermedad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jcenfermedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Ninguna", "Obesidad", "Desnutricion", " " }));
+        jcenfermedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcenfermedadActionPerformed(evt);
+            }
+        });
+        jpnMenu.add(jcenfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE))
+            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         pack();
@@ -224,14 +236,18 @@ String contra;
             String mascota=jtfNombreMascota.getText();
             String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
             String raza=String.valueOf(jcbRaza.getSelectedItem());
+            String enfermedad=String.valueOf(jcenfermedad.getSelectedItem());
             //Agregar validacion
             String edadTemportal=null;
+            double edad=0;
             edadTemportal=(String.valueOf(jcbEdad.getSelectedItem()));
             if(edadTemportal.equalsIgnoreCase("menos de 6 meses")){
-         
-            double edad=0.3;
+            edad=0.3;
             }else if(edadTemportal.equalsIgnoreCase("de 6 a 11 meses")){
-            double edad=0.8;
+            edad=0.8;
+            }else{
+                edad=Double.parseDouble(edadTemportal);
+            }
             // int edad=Integer.parseInt(String.valueOf(jcbEdad.getSelectedItem()));
             Double peso=Double.parseDouble(jtfPeso.getText());
             if(jtfNombreMascota.getText().equalsIgnoreCase("")){
@@ -246,13 +262,14 @@ String contra;
                 JOptionPane.showMessageDialog(null, "Inserte peso");
             
             }else{
-            Registros r=new Registros(mascota,tipo,raza,edad,peso);
+            Registros r=new Registros(mascota,tipo,raza,edad,peso,enfermedad);
             r.registrarmascota();
+            limpiarframe();
             }   
         }else{
             JOptionPane.showMessageDialog(null, "Solo se permite un registro de mascota");
         }
-        }
+        
     }//GEN-LAST:event_jbtEnviarActionPerformed
 
     private void jbtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalirActionPerformed
@@ -304,8 +321,17 @@ String contra;
         jtfNombreMascota.setText(q.getNomM());
         jcbTipoMascota.setSelectedItem(q.getTipo());
         jcbRaza.setSelectedItem(q.getRaza());
-        jcbEdad.setSelectedItem(String.valueOf(q.getEdad()));
+        double edad=q.getEdad();
+        System.out.println(edad);
+            if(edad==0.3){
+            jcbEdad.setSelectedItem("menos de 6 meses");
+            }else if(edad==0.8){
+            jcbEdad.setSelectedItem("de 6 a 11 meses");
+            }else{
+                jcbEdad.setSelectedItem(edad);
+            }
         jtfPeso.setText(String.valueOf(q.getPeso()));
+        jcenfermedad.setSelectedItem(q.getEnfermedad());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -314,10 +340,19 @@ String contra;
             limpiarframe();
             q.consultarMascota();
             jtfNombreMascota.setText(q.getNomM());
-            jcbTipoMascota.setSelectedItem(q.getTipo());
-            jcbRaza.setSelectedItem(q.getRaza());
-            jcbEdad.setSelectedItem(String.valueOf(q.getEdad()));
-            jtfPeso.setText(String.valueOf(q.getPeso()));
+        jcbTipoMascota.setSelectedItem(q.getTipo());
+        jcbRaza.setSelectedItem(q.getRaza());
+        double edad=q.getEdad();
+        System.out.println(edad);
+            if(edad==0.3){
+            jcbEdad.setSelectedItem("menos de 6 meses");
+            }else if(edad==0.8){
+            jcbEdad.setSelectedItem("de 6 a 11 meses");
+            }else{
+                jcbEdad.setSelectedItem(edad);
+            }
+        jtfPeso.setText(String.valueOf(q.getPeso()));
+        jcenfermedad.setSelectedItem(q.getEnfermedad());
             if(jtfNombreMascota.getText().equals("")){
                 jButton2.setText("Modificar");
             }else{jButton2.setText("Confirmar");}
@@ -326,8 +361,18 @@ String contra;
             String mascota=jtfNombreMascota.getText();
             String tipo=String.valueOf(jcbTipoMascota.getSelectedItem());
             String raza=String.valueOf(jcbRaza.getSelectedItem());
-            int edad=Integer.parseInt(String.valueOf(jcbEdad.getSelectedItem()));
+            String edadTemportal=null;
+            double edad=0;
+            edadTemportal=(String.valueOf(jcbEdad.getSelectedItem()));
+            if(edadTemportal.equalsIgnoreCase("menos de 6 meses")){
+            edad=0.3;
+            }else if(edadTemportal.equalsIgnoreCase("de 6 a 11 meses")){
+            edad=0.8;
+            }else{
+                edad=Double.parseDouble(edadTemportal);
+            }
             Double peso=Double.parseDouble(jtfPeso.getText());
+            String enfermedad=String.valueOf(jcenfermedad.getSelectedItem());
             if(jtfNombreMascota.getText().equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(null, "Inserte nombre");
             }else if(jcbTipoMascota.getSelectedItem().equals("-Seleccione-")){
@@ -338,8 +383,10 @@ String contra;
                 JOptionPane.showMessageDialog(null, "Seleccione edad");
             }else if(jtfPeso.getText().equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(null, "Inserte peso");
+            }else if(jcenfermedad.getSelectedItem().equals("-Seleccione-")){
+                JOptionPane.showMessageDialog(null, "Inserte enfermendad");
             }else{
-            Registros r=new Registros(mascota,tipo,raza,edad,peso);
+            Registros r=new Registros(mascota,tipo,raza,edad,peso,enfermedad);
             r.modificarmascota();
             jButton2.setText("Modificar");
             limpiarframe();
@@ -359,6 +406,10 @@ String contra;
             }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jcenfermedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcenfermedadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcenfermedadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -372,11 +423,13 @@ String contra;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jbtEnviar;
     private javax.swing.JButton jbtSalir;
     private javax.swing.JComboBox<String> jcbEdad;
     private javax.swing.JComboBox<String> jcbRaza;
     private javax.swing.JComboBox<String> jcbTipoMascota;
+    private javax.swing.JComboBox<String> jcenfermedad;
     private javax.swing.JLabel jlbEdad;
     private javax.swing.JLabel jlbLogoproyecto;
     private javax.swing.JLabel jlbNombreMascota;

@@ -34,6 +34,8 @@ public class Registro extends javax.swing.JFrame {
         jtfNumeroTelefono = new javax.swing.JTextField();
         jblUsuario = new javax.swing.JLabel();
         PanelIMG2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jtfCorreo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -44,22 +46,22 @@ public class Registro extends javax.swing.JFrame {
         jlbNombre.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbNombre.setText("Nombre:");
         jpnRegistrar.add(jlbNombre);
-        jlbNombre.setBounds(530, 120, 130, 30);
+        jlbNombre.setBounds(530, 110, 130, 30);
 
         jlbApepat.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbApepat.setText("Apellido Paterno:");
         jpnRegistrar.add(jlbApepat);
-        jlbApepat.setBounds(450, 170, 270, 40);
+        jlbApepat.setBounds(450, 160, 270, 40);
 
         jlbUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbUsuario.setText("Usuario");
         jpnRegistrar.add(jlbUsuario);
-        jlbUsuario.setBounds(520, 240, 140, 27);
+        jlbUsuario.setBounds(520, 220, 140, 27);
 
         jlbPassword.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbPassword.setText("Nueva Contraseña:");
         jpnRegistrar.add(jlbPassword);
-        jlbPassword.setBounds(440, 290, 280, 40);
+        jlbPassword.setBounds(440, 260, 280, 40);
 
         jtfNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -68,7 +70,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jtfNombre);
-        jtfNombre.setBounds(730, 110, 230, 41);
+        jtfNombre.setBounds(730, 100, 230, 41);
 
         jtfApepat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtfApepat.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +84,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jtfApepat);
-        jtfApepat.setBounds(730, 170, 230, 34);
+        jtfApepat.setBounds(730, 160, 230, 34);
 
         jtfUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -91,7 +93,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jtfUsuario);
-        jtfUsuario.setBounds(730, 240, 230, 34);
+        jtfUsuario.setBounds(730, 210, 230, 34);
 
         jpfPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -99,12 +101,12 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jpfPassword);
-        jpfPassword.setBounds(730, 290, 230, 34);
+        jpfPassword.setBounds(730, 260, 230, 34);
 
         jlbPasswordrepetible.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbPasswordrepetible.setText("Repite Contraseña:");
         jpnRegistrar.add(jlbPasswordrepetible);
-        jlbPasswordrepetible.setBounds(440, 340, 290, 40);
+        jlbPasswordrepetible.setBounds(440, 310, 290, 40);
 
         jpfPasswordRepetible.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -112,7 +114,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jpfPasswordRepetible);
-        jpfPasswordRepetible.setBounds(730, 340, 230, 34);
+        jpfPasswordRepetible.setBounds(730, 310, 230, 34);
 
         jbtAgregar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jbtAgregar.setText("Registrar");
@@ -137,7 +139,7 @@ public class Registro extends javax.swing.JFrame {
         jlbNumeroTelefono.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbNumeroTelefono.setText("Número de Teléfono:");
         jpnRegistrar.add(jlbNumeroTelefono);
-        jlbNumeroTelefono.setBounds(430, 390, 310, 40);
+        jlbNumeroTelefono.setBounds(430, 360, 310, 40);
 
         jtfNumeroTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtfNumeroTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -146,7 +148,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jpnRegistrar.add(jtfNumeroTelefono);
-        jtfNumeroTelefono.setBounds(730, 390, 230, 34);
+        jtfNumeroTelefono.setBounds(730, 360, 230, 34);
 
         jblUsuario.setBackground(new java.awt.Color(0, 0, 0));
         jblUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 36)); // NOI18N
@@ -157,6 +159,12 @@ public class Registro extends javax.swing.JFrame {
         PanelIMG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PanelLogin.png"))); // NOI18N
         jpnRegistrar.add(PanelIMG2);
         PanelIMG2.setBounds(0, 0, 860, 610);
+
+        jLabel1.setText("Correo");
+        jpnRegistrar.add(jLabel1);
+        jLabel1.setBounds(530, 410, 90, 40);
+        jpnRegistrar.add(jtfCorreo);
+        jtfCorreo.setBounds(730, 410, 230, 40);
 
         getContentPane().add(jpnRegistrar);
         jpnRegistrar.setBounds(0, 0, 1010, 610);
@@ -171,6 +179,7 @@ public class Registro extends javax.swing.JFrame {
         String con=jpfPassword.getText();
         String cel=jtfNumeroTelefono.getText();
         String con2=jpfPasswordRepetible.getText();
+        String correo=jtfCorreo.getText();
         if(jtfNombre.getText().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Inserte nombre");
         }else if(jtfApepat.getText().equalsIgnoreCase("")){
@@ -183,14 +192,16 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inserte celular");
         }else if(jpfPasswordRepetible.getText().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Inserte Confirmacion de contraseña");
+        }else if(jtfCorreo.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Inserte el correo");
         }else{
         if(con.equalsIgnoreCase(con2)){
             if(cel.length()>10 ||cel.length()<10){
             JOptionPane.showMessageDialog(null, "Formato invalido");
             }else{
-        Registros a=new Registros(nom,apepa,usu,con,cel);
+        Registros a=new Registros(nom,apepa,usu,con,cel,correo);
+                System.out.println(correo);
         a.registrar();
-            JOptionPane.showMessageDialog(null, "Registro exitoso");
             abrirIndex();
          }
             }else{
@@ -285,6 +296,7 @@ public class Registro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PanelIMG2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jblUsuario;
     private javax.swing.JButton jbtAgregar;
     private javax.swing.JLabel jlbApepat;
@@ -297,6 +309,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpfPasswordRepetible;
     private javax.swing.JPanel jpnRegistrar;
     private javax.swing.JTextField jtfApepat;
+    private javax.swing.JTextField jtfCorreo;
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfNumeroTelefono;
     private javax.swing.JTextField jtfUsuario;

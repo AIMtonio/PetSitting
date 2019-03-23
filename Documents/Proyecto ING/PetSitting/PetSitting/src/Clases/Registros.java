@@ -19,11 +19,19 @@ import javax.swing.JOptionPane;
  * @author Liz Jimenez
  */
 public class Registros {
-    static String nombre,apP,usuario, contra;
+    static String nombre,apP,usuario, contra, correo;
     String cel;
     
-    String nomM,tipo,raza;
+    String nomM,tipo,raza, enfermedad;
     double peso, edad;
+
+    public String getEnfermedad() {
+        return enfermedad;
+    }
+
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
+    }
 
     public String getNomM() {
         return nomM;
@@ -65,23 +73,24 @@ public class Registros {
         this.peso = peso;
     }
 
-    public Registros(String nomM, String tipo, String raza, double edad, double peso) {
+    public Registros(String nomM, String tipo, String raza, double edad, double peso,String enfermedad) {
         this.nomM = nomM;
         this.tipo = tipo;
         this.raza = raza;
         this.edad = edad;
         this.peso = peso;
+        this.enfermedad = enfermedad;
     }
     public Registros() {
     }
 
-    public Registros(String nombre, String apP, String usuario, String contra, String cel) {
+    public Registros(String nombre, String apP, String usuario, String contra, String cel, String correo) {
         this.nombre = nombre;
-        
         this.apP = apP;
         this.usuario = usuario;
         this.contra = contra;
         this.cel = cel;
+        this.correo = correo;
     }
 
     public Registros(String usuario, String contra) {
@@ -109,8 +118,9 @@ public class Registros {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
-            String sql="insert into usuario values(null,'"+nombre+"','"+apP+"','"+cel+"','"+usuario+"','"+contra+"');";
+            String sql="insert into usuario values(null,'"+nombre+"','"+apP+"','"+cel+"','"+correo+"','"+usuario+"','"+contra+"');";
             sentencia.execute(sql);
+            JOptionPane.showMessageDialog(null, "Registro exitoso");
         }catch(Exception a){
             a.printStackTrace();
         }
@@ -177,7 +187,7 @@ public class Registros {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
-            String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"',now(),'"+tipo+"',1,1);";
+            String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"','"+enfermedad+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
             JOptionPane.showMessageDialog(null,"Tu mascota fue registradas");
         }catch(Exception a){
@@ -208,10 +218,11 @@ public class Registros {
         ResultSet registro=sentencia.executeQuery(sql);
         while(registro.next()){
             nomM=registro.getString(2);
-            edad=registro.getInt(3);
+            edad=registro.getDouble(3);
             peso=registro.getDouble(4);
             raza=registro.getString(5);
-            tipo=registro.getString(7);
+            enfermedad=registro.getString(6);
+            tipo=registro.getString(8);
         }
         }
         }catch(Exception a){
@@ -229,6 +240,7 @@ public class Registros {
                     + "edad='"+edad+"',"
                     + "peso='"+peso+"',"
                     + "raza='"+raza+"',"
+                    + "enfermedad='"+enfermedad+"',"
                     + "tipo_masc='"+tipo+"'"
                     + "where nombre='"+nomM+"';";
             sentencia.execute(sql);
