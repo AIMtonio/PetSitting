@@ -33,9 +33,9 @@ public class Registro extends javax.swing.JFrame {
         jlbNumeroTelefono = new javax.swing.JLabel();
         jtfNumeroTelefono = new javax.swing.JTextField();
         jblUsuario = new javax.swing.JLabel();
-        PanelIMG2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jtfCorreo = new javax.swing.JTextField();
+        PanelIMG2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -54,7 +54,7 @@ public class Registro extends javax.swing.JFrame {
         jlbApepat.setBounds(450, 160, 270, 40);
 
         jlbUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
-        jlbUsuario.setText("Usuario");
+        jlbUsuario.setText("Usuario:");
         jpnRegistrar.add(jlbUsuario);
         jlbUsuario.setBounds(520, 220, 140, 27);
 
@@ -156,15 +156,16 @@ public class Registro extends javax.swing.JFrame {
         jpnRegistrar.add(jblUsuario);
         jblUsuario.setBounds(610, 20, 230, 50);
 
+        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
+        jLabel1.setText("Correo:");
+        jpnRegistrar.add(jLabel1);
+        jLabel1.setBounds(530, 410, 130, 40);
+        jpnRegistrar.add(jtfCorreo);
+        jtfCorreo.setBounds(730, 410, 230, 40);
+
         PanelIMG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PanelLogin.png"))); // NOI18N
         jpnRegistrar.add(PanelIMG2);
         PanelIMG2.setBounds(0, 0, 860, 610);
-
-        jLabel1.setText("Correo");
-        jpnRegistrar.add(jLabel1);
-        jLabel1.setBounds(530, 410, 90, 40);
-        jpnRegistrar.add(jtfCorreo);
-        jtfCorreo.setBounds(730, 410, 230, 40);
 
         getContentPane().add(jpnRegistrar);
         jpnRegistrar.setBounds(0, 0, 1010, 610);

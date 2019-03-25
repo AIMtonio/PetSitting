@@ -38,6 +38,7 @@ public class Recuperar extends javax.swing.JFrame {
         jtfCorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -53,7 +54,7 @@ public class Recuperar extends javax.swing.JFrame {
             }
         });
         jplIndex.add(jbtRecuperar);
-        jbtRecuperar.setBounds(620, 360, 190, 60);
+        jbtRecuperar.setBounds(430, 360, 190, 50);
 
         jtfCorreo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jplIndex.add(jtfCorreo);
@@ -67,6 +68,11 @@ public class Recuperar extends javax.swing.JFrame {
         jLabel4.setText("Ingrese correo");
         jplIndex.add(jLabel4);
         jLabel4.setBounds(430, 250, 170, 40);
+
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
+        jButton1.setText("CANCELAR");
+        jplIndex.add(jButton1);
+        jButton1.setBounds(630, 360, 200, 50);
 
         getContentPane().add(jplIndex);
         jplIndex.setBounds(0, 0, 860, 560);
@@ -85,6 +91,7 @@ public class Recuperar extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbtRecuperar;

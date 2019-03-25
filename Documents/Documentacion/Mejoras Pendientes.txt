@@ -9,4 +9,11 @@ Envio de notificacion
 Detallas gasto de mensajes.
 Cambiar tipo de dato: mascota.edad a double
 
+----------------
+26 de Marzo 2019
+
+Boton "Cancelar recuperacion"
+Pasar proceso de recuperacion por hilos (boton plasmado)
+
+
 
