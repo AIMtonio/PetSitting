@@ -40,6 +40,7 @@ public class Index extends javax.swing.JFrame {
         jblUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -91,6 +92,17 @@ public class Index extends javax.swing.JFrame {
         jplIndex.add(jLabel3);
         jLabel3.setBounds(0, 0, 860, 560);
 
+        Email.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        Email.setForeground(new java.awt.Color(0, 153, 204));
+        Email.setText("¿Olvidaste tu contraseña?");
+        Email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmailMouseClicked(evt);
+            }
+        });
+        jplIndex.add(Email);
+        Email.setBounds(590, 300, 200, 40);
+
         getContentPane().add(jplIndex);
         jplIndex.setBounds(0, 0, 860, 560);
 
@@ -129,6 +141,12 @@ public class Index extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtIniciarActionPerformed
 
+    private void EmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmailMouseClicked
+            this.setVisible(false);
+            Recuperar b=new Recuperar();
+            b.setVisible(true);
+    }//GEN-LAST:event_EmailMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -165,6 +183,7 @@ public class Index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
