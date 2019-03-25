@@ -203,7 +203,7 @@
                 <StringItem index="9" value="7"/>
                 <StringItem index="10" value="8"/>
                 <StringItem index="11" value="9"/>
-                <StringItem index="12" value="+10"/>
+                <StringItem index="12" value="10"/>
               </StringArray>
             </Property>
           </Properties>

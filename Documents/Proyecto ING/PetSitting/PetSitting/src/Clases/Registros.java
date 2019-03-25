@@ -189,7 +189,7 @@ public class Registros {
             Statement sentencia=obj.getCon().createStatement();
             String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"','"+enfermedad+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
-            JOptionPane.showMessageDialog(null,"Tu mascota fue registradas");
+            JOptionPane.showMessageDialog(null, "Producto activado, se registro tu mascota");
         }catch(Exception a){
             a.printStackTrace();
         }

@@ -127,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
         jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 230, 38));
 
         jcbEdad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "menos de 6 meses", "de 6 a 11 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+10" }));
+        jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "menos de 6 meses", "de 6 a 11 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         jcbEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbEdadActionPerformed(evt);
@@ -229,41 +229,11 @@ public class Menu extends javax.swing.JFrame {
         Registros c = new Registros();
         int idCliente=0;
         int statusPro=0;
-        String edadTemportal = null;
         c.consultarm();
         String ver = c.p;
         System.out.println(ver);
         if (ver == null) {
-            String mascota = jtfNombreMascota.getText();
-            String tipo = String.valueOf(jcbTipoMascota.getSelectedItem());
-            String raza = String.valueOf(jcbRaza.getSelectedItem());
-            String enfermedad = String.valueOf(jcenfermedad.getSelectedItem());
-            double edad = 0;
-            edadTemportal = (String.valueOf(jcbEdad.getSelectedItem()));
-            if (edadTemportal.equalsIgnoreCase("menos de 6 meses")) {
-                edad = 0.3;
-            } else if (edadTemportal.equalsIgnoreCase("de 6 a 11 meses")) {
-                edad = 0.8;
-            } else {
-                edad = Double.parseDouble(edadTemportal);
-            }
-            Double peso = Double.parseDouble(jtfPeso.getText());
-            if (jtfNombreMascota.getText().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Inserte nombre");
-            } else if (jcbTipoMascota.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione tipo");
-            } else if (jcbRaza.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione raza");
-            } else if (jcbEdad.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione edad");
-            } else if (jtfPeso.getText().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Inserte peso");
-
-            } else {
-                Registros r = new Registros(mascota, tipo, raza, edad, peso, enfermedad);
-                r.registrarmascota();
-                limpiarframe();
-            }
+            procesoregistro();
         } else {
             int x = JOptionPane.showConfirmDialog(null, "Solo se permite una mascota por dispositivo."
                     + "¿Cuentas con un nuevo dispositivo?");
@@ -307,8 +277,7 @@ public class Menu extends javax.swing.JFrame {
                        Aqui mete lo del registro por fa.
                        Si puedes con validaciones.
                        */
-                       
-                JOptionPane.showMessageDialog(null, "Producto activado, se registro tu mascota");
+                       procesoregistro();
                    } 
                 }else{//si no existe
                      JOptionPane.showMessageDialog(null, " Este producto no existe");
@@ -374,8 +343,26 @@ public class Menu extends javax.swing.JFrame {
             jcbEdad.setSelectedItem("menos de 6 meses");
         } else if (edad == 0.8) {
             jcbEdad.setSelectedItem("de 6 a 11 meses");
-        } else {
-            jcbEdad.setSelectedItem(edad);
+        } else if (edad == 1.0) {
+            jcbEdad.setSelectedItem("1");
+        }else if (edad == 2.0) {
+            jcbEdad.setSelectedItem("2");
+        }else if (edad == 3.0) {
+            jcbEdad.setSelectedItem("3");
+        }else if (edad == 4.0) {
+            jcbEdad.setSelectedItem("4");
+        }else if (edad == 5.0) {
+            jcbEdad.setSelectedItem("5");
+        }else if (edad == 6.0) {
+            jcbEdad.setSelectedItem("6");
+        }else if (edad == 7.0) {
+            jcbEdad.setSelectedItem("7");
+        }else if (edad == 8.0) {
+            jcbEdad.setSelectedItem("8");
+        }else if (edad == 9.0) {
+            jcbEdad.setSelectedItem("9");
+        }else if (edad == 10.0) {
+            jcbEdad.setSelectedItem("10");
         }
         jtfPeso.setText(String.valueOf(q.getPeso()));
         jcenfermedad.setSelectedItem(q.getEnfermedad());
@@ -391,13 +378,31 @@ public class Menu extends javax.swing.JFrame {
             jcbRaza.setSelectedItem(q.getRaza());
             double edad = q.getEdad();
             System.out.println(edad);
-            if (edad == 0.3) {
-                jcbEdad.setSelectedItem("menos de 6 meses");
-            } else if (edad == 0.8) {
-                jcbEdad.setSelectedItem("de 6 a 11 meses");
-            } else {
-                jcbEdad.setSelectedItem(edad);
-            }
+           if (edad == 0.3) {
+            jcbEdad.setSelectedItem("menos de 6 meses");
+        } else if (edad == 0.8) {
+            jcbEdad.setSelectedItem("de 6 a 11 meses");
+        } else if (edad == 1.0) {
+            jcbEdad.setSelectedItem("1");
+        }else if (edad == 2.0) {
+            jcbEdad.setSelectedItem("2");
+        }else if (edad == 3.0) {
+            jcbEdad.setSelectedItem("3");
+        }else if (edad == 4.0) {
+            jcbEdad.setSelectedItem("4");
+        }else if (edad == 5.0) {
+            jcbEdad.setSelectedItem("5");
+        }else if (edad == 6.0) {
+            jcbEdad.setSelectedItem("6");
+        }else if (edad == 7.0) {
+            jcbEdad.setSelectedItem("7");
+        }else if (edad == 8.0) {
+            jcbEdad.setSelectedItem("8");
+        }else if (edad == 9.0) {
+            jcbEdad.setSelectedItem("9");
+        }else if (edad == 10.0) {
+            jcbEdad.setSelectedItem("10");
+        }
             jtfPeso.setText(String.valueOf(q.getPeso()));
             jcenfermedad.setSelectedItem(q.getEnfermedad());
             if (jtfNombreMascota.getText().equals("")) {
@@ -566,5 +571,39 @@ public class Menu extends javax.swing.JFrame {
         jcbRaza.setSelectedItem("-Seleccione-");
         jcbEdad.setSelectedItem("-Seleccione-");
         jtfPeso.setText("");
+    }
+
+    private void procesoregistro() {
+        String edadTemportal = null;
+        String mascota = jtfNombreMascota.getText();
+            String tipo = String.valueOf(jcbTipoMascota.getSelectedItem());
+            String raza = String.valueOf(jcbRaza.getSelectedItem());
+            String enfermedad = String.valueOf(jcenfermedad.getSelectedItem());
+            double edad = 0;
+            edadTemportal = (String.valueOf(jcbEdad.getSelectedItem()));
+            if (edadTemportal.equalsIgnoreCase("menos de 6 meses")) {
+                edad = 0.3;
+            } else if (edadTemportal.equalsIgnoreCase("de 6 a 11 meses")) {
+                edad = 0.8;
+            } else {
+                edad = Double.parseDouble(edadTemportal);
+            }
+            Double peso = Double.parseDouble(jtfPeso.getText());
+            if (jtfNombreMascota.getText().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Inserte nombre");
+            } else if (jcbTipoMascota.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Seleccione tipo");
+            } else if (jcbRaza.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Seleccione raza");
+            } else if (jcbEdad.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Seleccione edad");
+            } else if (jtfPeso.getText().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Inserte peso");
+
+            } else {
+                Registros r = new Registros(mascota, tipo, raza, edad, peso, enfermedad);
+                r.registrarmascota();
+                limpiarframe();
+            }
     }
 }
