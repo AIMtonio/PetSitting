@@ -21,40 +21,44 @@ import javax.mail.internet.MimeMessage;
  */
 public class Email {
     
-    String correo="";
-    String password="";
-    String usuario="";
-    String de="blueskypetsitting546@gmail.com";
-    String clave="Bluesky546";
+    private String correo="";
+    private String password="";
+    private String usuario="";
+    private String de="blueskypetsitting546@gmail.com";
+    private String clave="Bluesky546";
+    public boolean enviado = false;
     
     public Email(String dato){
         correo=dato;
     }
     
-    
-    
-    public void consultar() {
+    public boolean consultar() {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
             String sql="SELECT password,usuario FROM usuario WHERE correo='"+correo+"';";
+            //System.out.print(sql);
             ResultSet registro=sentencia.executeQuery(sql);
             while(registro.next()){
                 password=registro.getString(1);
                 usuario=registro.getString(2);
             }
-            enviarCorreo(correo,"Hola usuario "+usuario+" su contraseña es: "+password+"."
+            System.out.print(usuario);
+            if(!usuario.equalsIgnoreCase("")){
+                enviarCorreo(correo,"Hola usuario "+usuario+" su contraseña es: "+password+"."
                     +" \n\n\n\n\nEl siguiente mensaje fue creado automaticamente, favor de no responder."
                     ,"Recuperación de contrseña");
+                return true;
+            }
         }catch(Exception a){
             a.printStackTrace();
         }
+        return false;
     }
     
     public boolean enviarCorreo(String para, String mensaje, String asunto){
-        boolean enviado = false;
+        
             try{
-                //System.out.println(de+" "+clave+" "+para+" "+mensaje+" "+asunto);
                 String host = "smtp.gmail.com";
                 //String host = "smtp-mail.outlook.com";
                 
@@ -102,7 +106,6 @@ public class Email {
                 transport.close();
                 
                 enviado = true;
-                
             }catch(Exception e){
                 e.printStackTrace();
             }

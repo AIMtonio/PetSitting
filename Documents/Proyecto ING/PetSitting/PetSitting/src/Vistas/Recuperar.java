@@ -71,6 +71,11 @@ public class Recuperar extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton1.setText("CANCELAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jplIndex.add(jButton1);
         jButton1.setBounds(630, 360, 200, 50);
 
@@ -82,12 +87,26 @@ public class Recuperar extends javax.swing.JFrame {
 
     private void jbtRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRecuperarActionPerformed
         Email e=new Email(jtfCorreo.getText());
-        e.consultar();
-        JOptionPane.showMessageDialog(null, "Se a enviado un correo con su contraseña, favor de revisar su buzon.");
+        if(e.consultar()){
+            if(e.enviado){
+                JOptionPane.showMessageDialog(null, "Se a enviado un correo con su contraseña, favor de revisar su buzon.");
+                this.setVisible(false);
+                Index b=new Index();
+                b.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede enviar el correo, favor de revisar su conexión.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontró el correo, favor de revisar su correo.");
+        }
+        
+    }//GEN-LAST:event_jbtRecuperarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         Index b=new Index();
         b.setVisible(true);
-    }//GEN-LAST:event_jbtRecuperarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
