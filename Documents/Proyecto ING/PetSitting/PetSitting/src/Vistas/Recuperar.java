@@ -82,11 +82,19 @@ public class Recuperar extends javax.swing.JFrame {
 
     private void jbtRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRecuperarActionPerformed
         Email e=new Email(jtfCorreo.getText());
-        e.consultar();
-        JOptionPane.showMessageDialog(null, "Se a enviado un correo con su contraseña, favor de revisar su buzon.");
-        this.setVisible(false);
-        Index b=new Index();
-        b.setVisible(true);
+        if(e.consultar()){
+            if(e.enviado){
+                JOptionPane.showMessageDialog(null, "Se a enviado un correo con su contraseña, favor de revisar su buzon.");
+                this.setVisible(false);
+                Index b=new Index();
+                b.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se envió el correo, favor de revisar su conexión.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontro el correo, favor de revisar el correo.");
+        }
+        
     }//GEN-LAST:event_jbtRecuperarActionPerformed
 
 
