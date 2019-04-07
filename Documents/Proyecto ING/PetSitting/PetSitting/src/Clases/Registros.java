@@ -81,6 +81,7 @@ public class Registros {
         this.peso = peso;
         this.enfermedad = enfermedad;
     }
+    
     public Registros() {
     }
 
@@ -190,6 +191,7 @@ public class Registros {
             String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"','"+enfermedad+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
             JOptionPane.showMessageDialog(null, "Producto activado, se registro tu mascota");
+            calcularAlimento(tipo, raza, peso, edad, enfermedad);
         }catch(Exception a){
             a.printStackTrace();
         }
@@ -247,6 +249,42 @@ public class Registros {
             JOptionPane.showMessageDialog(null,"Los datos de tu mascota se a modificado");
         }catch(Exception a){
             a.printStackTrace();
+        }
+    }
+    
+    public void calcularAlimento(String tipo, String raza, double peso, double edad, String enfermedad){
+        if(tipo.equals("Perro")){
+            if(enfermedad.equals("Obesidad")){
+                
+            }else if(enfermedad.equals("Desnutricion")){
+                
+            }else{
+                
+            }
+        }else if(tipo.equals("Gato")){
+            if(enfermedad.equals("Obesidad")){
+                
+            }else if(enfermedad.equals("Desnutricion")){
+                
+            }else{
+                
+            }
+        }else if(tipo.equals("Conejo")){
+            if(enfermedad.equals("Obesidad")){
+                
+            }else if(enfermedad.equals("Desnutricion")){
+                
+            }else{
+                
+            }
+        }else if(tipo.equals("Roedor")){
+            if(enfermedad.equals("Obesidad")){
+                
+            }else if(enfermedad.equals("Desnutricion")){
+                
+            }else{
+                
+            }
         }
     }
 }
