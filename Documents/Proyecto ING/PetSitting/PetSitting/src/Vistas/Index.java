@@ -71,6 +71,12 @@ public class Index extends javax.swing.JFrame {
         });
         jplIndex.add(jbtIniciar);
         jbtIniciar.setBounds(480, 370, 160, 60);
+
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyTyped(evt);
+            }
+        });
         jplIndex.add(jPasswordField1);
         jPasswordField1.setBounds(590, 240, 200, 50);
 
@@ -111,7 +117,7 @@ public class Index extends javax.swing.JFrame {
 
     private void jbtRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRegistrarActionPerformed
         Registros c=new Registros();
-        c.consultarr();
+        c.consultarIDusuario();
         String ver=c.pruebar;
         System.out.println(ver);
         if(ver==null){
@@ -146,6 +152,10 @@ public class Index extends javax.swing.JFrame {
             Recuperar b=new Recuperar();
             b.setVisible(true);
     }//GEN-LAST:event_EmailMouseClicked
+
+    private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
+        
+    }//GEN-LAST:event_jPasswordField1KeyTyped
 
     /**
      * @param args the command line arguments

@@ -49,14 +49,14 @@ public class Registro extends javax.swing.JFrame {
         jlbNombre.setBounds(530, 110, 130, 30);
 
         jlbApepat.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
-        jlbApepat.setText("Apellido Paterno:");
+        jlbApepat.setText("Apellidos:");
         jpnRegistrar.add(jlbApepat);
-        jlbApepat.setBounds(450, 160, 270, 40);
+        jlbApepat.setBounds(500, 160, 170, 40);
 
         jlbUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbUsuario.setText("Usuario:");
         jpnRegistrar.add(jlbUsuario);
-        jlbUsuario.setBounds(520, 220, 140, 27);
+        jlbUsuario.setBounds(530, 220, 140, 27);
 
         jlbPassword.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jlbPassword.setText("Nueva Contraseña:");
@@ -202,7 +202,7 @@ public class Registro extends javax.swing.JFrame {
             }else{
         Registros a=new Registros(nom,apepa,usu,con,cel,correo);
                 System.out.println(correo);
-        a.registrar();
+        a.registrarUsuario();
             abrirIndex();
          }
             }else{

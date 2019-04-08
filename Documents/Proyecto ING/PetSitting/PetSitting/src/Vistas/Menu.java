@@ -71,6 +71,8 @@ public class Menu extends javax.swing.JFrame {
         jcenfermedad = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jcbActividad = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
                 jbtEnviarActionPerformed(evt);
             }
         });
-        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, 190, 50));
+        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, 190, 50));
 
         jbtSalir.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jbtSalir.setText("Cerar Sesion");
@@ -169,7 +171,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 190, 50));
+        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 190, 50));
 
         jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton2.setText("Modificar");
@@ -178,7 +180,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 440, 190, 50));
+        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 480, 190, 50));
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 24)); // NOI18N
         jLabel2.setText("Inserte los datos de la mascota ");
@@ -201,13 +203,21 @@ public class Menu extends javax.swing.JFrame {
         jpnMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 50, -1, 60));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PanelLogin.png"))); // NOI18N
-        jpnMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, -1));
+        jpnMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
+
+        jcbActividad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jcbActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Alta", "Normal", "Baja" }));
+        jpnMenu.add(jcbActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, 230, 40));
+
+        jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        jLabel6.setText("Actividad de la Mascota");
+        jpnMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 280, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,9 +239,9 @@ public class Menu extends javax.swing.JFrame {
         Registros c = new Registros();
         int idCliente=0;
         int statusPro=0;
-        c.consultarm();
+        c.consultarIDmascota();
         String ver = c.p;
-        System.out.println(ver);
+        //System.out.println(ver);
         if (ver == null) {
             procesoregistro();
         } else {
@@ -289,7 +299,6 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtEnviarActionPerformed
 
     private void jbtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalirActionPerformed
-        // TODO add your handling code here:
         this.setVisible(false);
         Index b = new Index();
         b.setVisible(true);
@@ -305,28 +314,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbRazaActionPerformed
 
     private void jcbTipoMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoMascotaActionPerformed
-        // TODO add your handling code here:
-        Registros w = new Registros();
-        String tipo = String.valueOf(jcbTipoMascota.getSelectedItem());
-        switch (tipo) {
-            case "Perro":
-                limpiar();
-                ObtenerP();
-                break;
-            case "Gato":
-                limpiar();
-                ObtenerG();
-                break;
-            case "Conejo":
-                limpiar();
-                ObtenerC();
-                break;
-            case "Roedor":
-                limpiar();
-                ObtenerR();
-                break;
-        }
-
+        ObtenerRazas(String.valueOf(jcbTipoMascota.getSelectedItem()));
     }//GEN-LAST:event_jcbTipoMascotaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -440,8 +428,8 @@ public class Menu extends javax.swing.JFrame {
             } else if (jcenfermedad.getSelectedItem().equals("-Seleccione-")) {
                 JOptionPane.showMessageDialog(null, "Inserte enfermendad");
             } else {
-                Registros r = new Registros(mascota, tipo, raza, edad, peso, enfermedad);
-                r.modificarmascota();
+                Registros r = new Registros(mascota, tipo, raza, edad, peso, enfermedad, String.valueOf(jcbActividad.getSelectedItem()));
+                r.modificarMascota();
                 jButton2.setText("Modificar");
                 limpiarframe();
             }
@@ -467,8 +455,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbtEnviar;
     private javax.swing.JButton jbtSalir;
+    private javax.swing.JComboBox<String> jcbActividad;
     private javax.swing.JComboBox<String> jcbEdad;
     private javax.swing.JComboBox<String> jcbRaza;
     private javax.swing.JComboBox<String> jcbTipoMascota;
@@ -499,70 +489,22 @@ public class Menu extends javax.swing.JFrame {
             a.printStackTrace();
         }
     }
-
-    private void ObtenerP() {
-        jcbRaza.addItem("-Seleccione-");
-        try {
-            Conexion obj = new Conexion();
-            Statement sentencia = obj.getCon().createStatement();
-            String sql = "select raza from tipo where tipo_mascota='Perro';";
-            ResultSet registro = sentencia.executeQuery(sql);
-            while (registro.next()) {
-                jcbRaza.addItem(registro.getString(1));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos", JOptionPane.QUESTION_MESSAGE);
-        }
-
-    }
-
-    private void ObtenerG() {
-        jcbRaza.addItem("-Seleccione-");
-        try {
-            Conexion obj = new Conexion();
-            Statement sentencia = obj.getCon().createStatement();
-            String sql = "select raza from tipo where tipo_mascota='Gato';";
-            ResultSet registro = sentencia.executeQuery(sql);
-            while (registro.next()) {
-                jcbRaza.addItem(registro.getString(1));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos", JOptionPane.QUESTION_MESSAGE);
-        }
-    }
-
-    private void ObtenerC() {
-        jcbRaza.addItem("-Seleccione-");
-        try {
-            Conexion obj = new Conexion();
-            Statement sentencia = obj.getCon().createStatement();
-            String sql = "select raza from tipo where tipo_mascota='Conejo';";
-            ResultSet registro = sentencia.executeQuery(sql);
-            while (registro.next()) {
-                jcbRaza.addItem(registro.getString(1));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos", JOptionPane.QUESTION_MESSAGE);
-        }
-    }
-
-    private void ObtenerR() {
-        jcbRaza.addItem("-Seleccione-");
-        try {
-            Conexion obj = new Conexion();
-            Statement sentencia = obj.getCon().createStatement();
-            String sql = "select raza from tipo where tipo_mascota='Roedor';";
-            ResultSet registro = sentencia.executeQuery(sql);
-            while (registro.next()) {
-                jcbRaza.addItem(registro.getString(1));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos", JOptionPane.QUESTION_MESSAGE);
-        }
-    }
-
-    private void limpiar() {
+    
+    private void ObtenerRazas(String tipo) {
         jcbRaza.removeAllItems();
+        jcbRaza.addItem("-Seleccione-");
+        try {
+            Conexion obj = new Conexion();
+            Statement sentencia = obj.getCon().createStatement();
+            String sql = "SELECT raza FROM tipo WHERE tipo_mascota='"+tipo+"' ORDER BY raza;";
+            ResultSet registro = sentencia.executeQuery(sql);
+            while (registro.next()) {
+                jcbRaza.addItem(registro.getString(1));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos", JOptionPane.QUESTION_MESSAGE);
+        }
+
     }
 
     private void limpiarframe() {
@@ -601,8 +543,9 @@ public class Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Inserte peso");
 
             } else {
-                Registros r = new Registros(mascota, tipo, raza, edad, peso, enfermedad);
-                r.registrarmascota();
+                Registros r = new Registros(mascota, tipo, raza, edad, peso, 
+                        enfermedad, String.valueOf(jcbActividad.getSelectedItem()));
+                r.registrarMascota();
                 limpiarframe();
             }
     }

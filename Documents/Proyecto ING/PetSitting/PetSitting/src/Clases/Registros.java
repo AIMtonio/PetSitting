@@ -20,11 +20,12 @@ import javax.swing.JOptionPane;
  */
 public class Registros {
     static String nombre,apP,usuario, contra, correo;
-    String cel;
+    String cel, nomM, tipo, raza, enfermedad, actividad, buscarmas;
+    double peso, edad, alimento;
+    public String pruebar;
+    public String prueba;
+    public String p;
     
-    String nomM,tipo,raza, enfermedad;
-    double peso, edad;
-
     public String getEnfermedad() {
         return enfermedad;
     }
@@ -72,14 +73,15 @@ public class Registros {
     public void setPeso(double peso) {
         this.peso = peso;
     }
-
-    public Registros(String nomM, String tipo, String raza, double edad, double peso,String enfermedad) {
+    
+    public Registros(String nomM, String tipo, String raza, double edad, double peso,String enfermedad, String actividad) {
         this.nomM = nomM;
         this.tipo = tipo;
         this.raza = raza;
         this.edad = edad;
         this.peso = peso;
         this.enfermedad = enfermedad;
+        this.actividad = actividad;
     }
     
     public Registros() {
@@ -115,7 +117,7 @@ public class Registros {
         Registros.contra = contra;
     }
 
-    public void registrar(){
+    public void registrarUsuario(){
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
@@ -128,7 +130,7 @@ public class Registros {
     }
     
     public String iniciarS(){
-        consultar();
+        consultarNombreUsuario();
         String a="";
         if (prueba==null) {
             a="no";
@@ -137,9 +139,8 @@ public class Registros {
         }
         return a;
     }
-    
-    public String prueba;
-    public void consultar() {
+   
+    public void consultarNombreUsuario() {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
@@ -153,8 +154,7 @@ public class Registros {
         }
     }
     
-    public String pruebar;
-    public void consultarr() {
+    public void consultarIDusuario() {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
@@ -168,8 +168,7 @@ public class Registros {
         }
     }
     
-     public String p;
-    public void consultarm() {
+    public void consultarIDmascota() {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
@@ -183,30 +182,30 @@ public class Registros {
         }
     }
     
-    public void registrarmascota(){
-        registrarcontrol();
+    public void registrarMascota(){
+        calcularAlimento(tipo, raza, peso, edad, enfermedad);
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
             String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"','"+enfermedad+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
             JOptionPane.showMessageDialog(null, "Producto activado, se registro tu mascota");
-            calcularAlimento(tipo, raza, peso, edad, enfermedad);
         }catch(Exception a){
             a.printStackTrace();
         }
     }
-    public void registrarcontrol(){
+    
+    public void registrarControl(double ca, int ch, int cv){
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
-            String sql="insert into control values(null,'1.300',3,3)";
+            String sql="INSERT INTO control VALUES(null,'"+alimento+"','"+ch+"','"+cv+"')";
             sentencia.execute(sql);
         }catch(Exception a){
             a.printStackTrace();
         }
     }
-    String buscarmas;
+    
     public void consultarMascota(){
         try{
         buscarmas=JOptionPane.showInputDialog(null,"Ingresa el nombre de tu mascota","Buscar mascota",JOptionPane.QUESTION_MESSAGE);
@@ -234,7 +233,7 @@ public class Registros {
         
     }
     
-    public void modificarmascota(){
+    public void modificarMascota(){
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
@@ -253,38 +252,152 @@ public class Registros {
     }
     
     public void calcularAlimento(String tipo, String raza, double peso, double edad, String enfermedad){
+        peso=peso*1000;
         if(tipo.equals("Perro")){
-            if(enfermedad.equals("Obesidad")){
-                
-            }else if(enfermedad.equals("Desnutricion")){
-                
+            if(actividad.equals("Alta")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-10;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
+            }else if(actividad.equals("Baja")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-15;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
             }else{
-                
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-5;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025);
+                    registrarControl(alimento, 10, 2);
+                }
             }
         }else if(tipo.equals("Gato")){
-            if(enfermedad.equals("Obesidad")){
-                
-            }else if(enfermedad.equals("Desnutricion")){
-                
+            if(actividad.equals("Alta")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-10;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
+            }else if(actividad.equals("Baja")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-15;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
             }else{
-                
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-5;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025);
+                    registrarControl(alimento, 10, 2);
+                }
             }
+
         }else if(tipo.equals("Conejo")){
-            if(enfermedad.equals("Obesidad")){
-                
-            }else if(enfermedad.equals("Desnutricion")){
-                
+            if(actividad.equals("Alta")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-10;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
+            }else if(actividad.equals("Baja")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-15;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
             }else{
-                
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-5;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025);
+                    registrarControl(alimento, 10, 2);
+                }
             }
+        
         }else if(tipo.equals("Roedor")){
-            if(enfermedad.equals("Obesidad")){
-                
-            }else if(enfermedad.equals("Desnutricion")){
-                
+            if(actividad.equals("Alta")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-10;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
+            }else if(actividad.equals("Baja")){
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-15;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+10;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }
             }else{
-                
+                if(enfermedad.equals("Obesidad")){
+                    alimento=(peso*0.025)-5;
+                    registrarControl(alimento, 10, 2);
+                }else if(enfermedad.equals("Desnutricion")){
+                    alimento=(peso*0.025)+5;
+                    registrarControl(alimento, 10, 2);
+                }else{
+                    alimento=(peso*0.025);
+                    registrarControl(alimento, 10, 2);
+                }
             }
+        
+
         }
     }
-}
+    
+}//class
