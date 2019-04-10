@@ -504,7 +504,6 @@ public class Menu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showInputDialog(null, "No se recupero la consulta", "Peticion de datos", JOptionPane.QUESTION_MESSAGE);
         }
-
     }
 
     private void limpiarframe() {

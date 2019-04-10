@@ -26,6 +26,33 @@ public class Registros {
     public String prueba;
     public String p;
     
+     public Registros() {
+    }
+
+    public Registros(String nombre, String apP, String usuario, String contra, String cel, String correo) {
+        this.nombre = nombre;
+        this.apP = apP;
+        this.usuario = usuario;
+        this.contra = contra;
+        this.cel = cel;
+        this.correo = correo;
+    }
+
+    public Registros(String usuario, String contra) {
+        this.usuario = usuario;
+        this.contra = contra;
+    }
+    
+    public Registros(String nomM, String tipo, String raza, double edad, double peso,String enfermedad, String actividad) {
+        this.nomM = nomM;
+        this.tipo = tipo;
+        this.raza = raza;
+        this.edad = edad;
+        this.peso = peso;
+        this.enfermedad = enfermedad;
+        this.actividad = actividad;
+    }
+    
     public String getEnfermedad() {
         return enfermedad;
     }
@@ -74,33 +101,6 @@ public class Registros {
         this.peso = peso;
     }
     
-    public Registros(String nomM, String tipo, String raza, double edad, double peso,String enfermedad, String actividad) {
-        this.nomM = nomM;
-        this.tipo = tipo;
-        this.raza = raza;
-        this.edad = edad;
-        this.peso = peso;
-        this.enfermedad = enfermedad;
-        this.actividad = actividad;
-    }
-    
-    public Registros() {
-    }
-
-    public Registros(String nombre, String apP, String usuario, String contra, String cel, String correo) {
-        this.nombre = nombre;
-        this.apP = apP;
-        this.usuario = usuario;
-        this.contra = contra;
-        this.cel = cel;
-        this.correo = correo;
-    }
-
-    public Registros(String usuario, String contra) {
-        this.usuario = usuario;
-        this.contra = contra;
-    }
-
     public static String getUsuario() {
         return usuario;
     }
