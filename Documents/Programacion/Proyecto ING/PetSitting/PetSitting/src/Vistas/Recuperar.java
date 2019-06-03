@@ -39,6 +39,7 @@ public class Recuperar extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -74,6 +75,11 @@ public class Recuperar extends javax.swing.JFrame {
         jplIndex.add(jButton1);
         jButton1.setBounds(630, 360, 200, 50);
 
+        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
+        jLabel1.setText("RECUPERAR CONTRASEÑA");
+        jplIndex.add(jLabel1);
+        jLabel1.setBounds(450, 100, 410, 80);
+
         getContentPane().add(jplIndex);
         jplIndex.setBounds(0, 0, 860, 560);
 
@@ -100,6 +106,7 @@ public class Recuperar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbtRecuperar;
