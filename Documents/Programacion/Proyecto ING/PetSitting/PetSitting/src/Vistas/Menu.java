@@ -59,7 +59,6 @@ public class Menu extends javax.swing.JFrame {
         jcbRaza = new javax.swing.JComboBox<>();
         jcbEdad = new javax.swing.JComboBox<>();
         jbtEnviar = new javax.swing.JButton();
-        jbtSalir = new javax.swing.JButton();
         jlbUsuario = new javax.swing.JLabel();
         Contraprueba = new javax.swing.JLabel();
         idprueba = new javax.swing.JLabel();
@@ -81,22 +80,22 @@ public class Menu extends javax.swing.JFrame {
 
         jlbNombreMascota.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbNombreMascota.setText("Nombre de la mascota:");
-        jpnMenu.add(jlbNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 280, 40));
+        jpnMenu.add(jlbNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 280, 40));
 
         jlbRaza.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbRaza.setText("Raza:");
-        jpnMenu.add(jlbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, 70, 30));
+        jpnMenu.add(jlbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, 70, 30));
 
         jlbEdad.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbEdad.setText("Edad:");
-        jpnMenu.add(jlbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 60, 40));
+        jpnMenu.add(jlbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 310, 60, 40));
 
         jlbPeso.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbPeso.setText("Peso:");
-        jpnMenu.add(jlbPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 320, 70, 40));
+        jpnMenu.add(jlbPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, 70, 40));
 
         jtfNombreMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jpnMenu.add(jtfNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 230, 38));
+        jpnMenu.add(jtfNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 230, 38));
 
         jcbTipoMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbTipoMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Perro", "Gato", "Conejo", "Roedor" }));
@@ -110,14 +109,14 @@ public class Menu extends javax.swing.JFrame {
                 jcbTipoMascotaActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, 230, 38));
+        jpnMenu.add(jcbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 210, 230, 38));
 
         jlbTipoMascota.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jlbTipoMascota.setText("Tipo de Mascota:");
-        jpnMenu.add(jlbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 210, 40));
+        jpnMenu.add(jlbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 210, 40));
 
         jtfPeso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jpnMenu.add(jtfPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 320, 230, 44));
+        jpnMenu.add(jtfPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 230, 44));
 
         jcbRaza.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-" }));
@@ -126,7 +125,7 @@ public class Menu extends javax.swing.JFrame {
                 jcbRazaActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 230, 38));
+        jpnMenu.add(jcbRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 230, 38));
 
         jcbEdad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "menos de 6 meses", "de 6 a 11 meses", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
@@ -135,7 +134,7 @@ public class Menu extends javax.swing.JFrame {
                 jcbEdadActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 270, 230, 38));
+        jpnMenu.add(jcbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 310, 230, 38));
 
         jbtEnviar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jbtEnviar.setText("Registrar");
@@ -144,25 +143,18 @@ public class Menu extends javax.swing.JFrame {
                 jbtEnviarActionPerformed(evt);
             }
         });
-        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, 190, 50));
-
-        jbtSalir.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jbtSalir.setText("Cerar Sesion");
-        jbtSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtSalirActionPerformed(evt);
-            }
-        });
-        jpnMenu.add(jbtSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 180, 40));
+        jpnMenu.add(jbtEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 190, 50));
 
         jlbUsuario.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 36)); // NOI18N
-        jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 190, 40));
+        jlbUsuario.setForeground(new java.awt.Color(0, 153, 204));
+        jpnMenu.add(jlbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 190, 40));
         jpnMenu.add(Contraprueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
         jpnMenu.add(idprueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 204));
         jLabel1.setText("Bienvenido");
-        jpnMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 290, 40));
+        jpnMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 290, 40));
 
         jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton1.setText("Consultar");
@@ -171,7 +163,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 190, 50));
+        jpnMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 190, 50));
 
         jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         jButton2.setText("Modificar");
@@ -180,38 +172,43 @@ public class Menu extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 480, 190, 50));
+        jpnMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 530, 190, 50));
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 24)); // NOI18N
         jLabel2.setText("Inserte los datos de la mascota ");
-        jpnMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 430, 30));
+        jpnMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 430, 30));
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jLabel3.setText("Padece alguna efermedad?");
-        jpnMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 310, 30));
+        jpnMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 310, 30));
 
         jcenfermedad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jcenfermedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Ninguna", "Obesidad", "Desnutricion", " " }));
+        jcenfermedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Ninguna", "Obesidad", "Desnutrición" }));
         jcenfermedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcenfermedadActionPerformed(evt);
             }
         });
-        jpnMenu.add(jcenfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 370, 230, 40));
+        jpnMenu.add(jcenfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 410, 230, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Safe_Out_64.png"))); // NOI18N
-        jpnMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 50, -1, 60));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jpnMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, -1, 60));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PanelLogin.png"))); // NOI18N
         jpnMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
 
         jcbActividad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jcbActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Alta", "Normal", "Baja" }));
-        jpnMenu.add(jcbActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, 230, 40));
+        jpnMenu.add(jcbActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 460, 230, 40));
 
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jLabel6.setText("Actividad de la Mascota");
-        jpnMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 280, 40));
+        jpnMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, 280, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -297,13 +294,6 @@ public class Menu extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jbtEnviarActionPerformed
-
-    private void jbtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalirActionPerformed
-        this.setVisible(false);
-        Index b = new Index();
-        b.setVisible(true);
-
-    }//GEN-LAST:event_jbtSalirActionPerformed
 
     private void jcbEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEdadActionPerformed
         // TODO add your handling code here:
@@ -441,6 +431,13 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcenfermedadActionPerformed
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Index b = new Index();
+        b.setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -457,7 +454,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbtEnviar;
-    private javax.swing.JButton jbtSalir;
     private javax.swing.JComboBox<String> jcbActividad;
     private javax.swing.JComboBox<String> jcbEdad;
     private javax.swing.JComboBox<String> jcbRaza;

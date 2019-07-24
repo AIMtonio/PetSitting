@@ -126,8 +126,8 @@ public class Index extends javax.swing.JFrame {
             b.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Solo se permite un registro");
-            String codigo=JOptionPane.showInputDialog(null,"h");
-            JOptionPane.showMessageDialog(null, "Texto " + codigo);
+//            String codigo=JOptionPane.showInputDialog(null,"h");
+//            JOptionPane.showMessageDialog(null, "Texto " + codigo);
         }
     }//GEN-LAST:event_jbtRegistrarActionPerformed
 

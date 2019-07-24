@@ -109,9 +109,10 @@ public class Recuperar extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtRecuperarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         this.setVisible(false);
         Index b=new Index();
-                b.setVisible(true);
+        b.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
