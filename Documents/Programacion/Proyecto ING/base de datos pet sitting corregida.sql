@@ -1,4 +1,4 @@
-drop database petsitting;
+
 create database petsitting;
 
 use petsitting;
