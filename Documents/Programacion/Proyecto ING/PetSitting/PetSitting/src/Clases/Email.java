@@ -23,7 +23,7 @@ public class Email {
     private String correo="";
     private String password="";
     private String usuario="";
-    private String de="blueskypetsitting546@gmail.com";
+    private String de="pet_sitting_bs@outlook.com";//"blueskypetsitting546@gmail.com";
     private String clave="Bluesky546";
     public boolean enviado = false;
     
@@ -56,8 +56,8 @@ public class Email {
     public boolean enviarCorreo(String para, String mensaje, String asunto){
        
             try{
-                String host = "smtp.gmail.com";
-                //String host = "smtp-mail.outlook.com";
+                //String host = "smtp.gmail.com";
+                String host = "smtp-mail.outlook.com";
                 
                 Properties prop = System.getProperties();
                 
@@ -111,4 +111,16 @@ public class Email {
         return enviado;
     }
     
+//    public static void main(String[] args) {
+//        Email e=new Email("larioskay540@gmail.com");
+//        if(e.consultar()){
+//            if(e.enviado){
+//                System.out.println("Se a enviado un correo con su contraseña, favor de revisar su buzón.");
+//            }else{
+//                System.out.println("No se envió el correo, favor de revisar su conexión.");
+//            }
+//        }else{
+//            System.out.println("No se encontro el correo, favor de revisar los datos.");
+//        }
+//    }
 }

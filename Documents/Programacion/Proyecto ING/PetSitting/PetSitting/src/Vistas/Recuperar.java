@@ -95,7 +95,7 @@ public class Recuperar extends javax.swing.JFrame {
         Email e=new Email(jtfCorreo.getText());
         if(e.consultar()){
             if(e.enviado){
-                JOptionPane.showMessageDialog(null, "Se a enviado un correo con su contraseña, favor de revisar su buzon.");
+                JOptionPane.showMessageDialog(null, "Se a enviado un correo con su contraseña, favor de revisar su buzón.");
                 this.setVisible(false);
                 Index b=new Index();
                 b.setVisible(true);
@@ -103,7 +103,7 @@ public class Recuperar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No se envió el correo, favor de revisar su conexión.");
             }
         }else{
-            JOptionPane.showMessageDialog(null, "No se encontro el correo, favor de revisar el correo.");
+            JOptionPane.showMessageDialog(null, "No se encontro el correo, favor de revisar los datos.");
         }
         
     }//GEN-LAST:event_jbtRecuperarActionPerformed
