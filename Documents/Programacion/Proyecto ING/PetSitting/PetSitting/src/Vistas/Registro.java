@@ -1,7 +1,9 @@
-
 package Vistas;
+
 import Clases.Registros;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registro extends javax.swing.JFrame {
 
@@ -142,6 +144,11 @@ public class Registro extends javax.swing.JFrame {
         jlbNumeroTelefono.setBounds(430, 360, 310, 40);
 
         jtfNumeroTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtfNumeroTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNumeroTelefonoActionPerformed(evt);
+            }
+        });
         jtfNumeroTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfNumeroTelefonoKeyTyped(evt);
@@ -174,43 +181,57 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAgregarActionPerformed
-        String nom=jtfNombre.getText();
-        String apepa=jtfApepat.getText();
-        String usu=jtfUsuario.getText();
-        String con=jpfPassword.getText();
-        String cel=jtfNumeroTelefono.getText();
-        String con2=jpfPasswordRepetible.getText();
-        String correo=jtfCorreo.getText();
-        if(jtfNombre.getText().equalsIgnoreCase("")){
+        String nom = jtfNombre.getText();
+        String apepa = jtfApepat.getText();
+        String usu = jtfUsuario.getText();
+        String con = jpfPassword.getText();
+        String cel = jtfNumeroTelefono.getText();
+        String con2 = jpfPasswordRepetible.getText();
+        String correo = jtfCorreo.getText();
+        if (jtfNombre.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte nombre");
-        }else if(jtfApepat.getText().equalsIgnoreCase("")){
+        } else if (jtfApepat.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte apellido");
-        }else if(jtfUsuario.getText().equalsIgnoreCase("")){
+        } else if (jtfUsuario.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte usuario");
-        }else if(jpfPassword.getText().equalsIgnoreCase("")){
+        } else if (jpfPassword.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte contraseña");
-        }else if(jtfNumeroTelefono.getText().equalsIgnoreCase("")){
+        } else if (jtfNumeroTelefono.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte celular");
-        }else if(jpfPasswordRepetible.getText().equalsIgnoreCase("")){
+        } else if (jpfPasswordRepetible.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte Confirmacion de contraseña");
-        }else if(jtfCorreo.getText().equalsIgnoreCase("")){
+        } else if (jtfCorreo.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte el correo");
-        }else{
-        if(con.equalsIgnoreCase(con2)){
-            if(cel.length()>10 ||cel.length()<10){
-            JOptionPane.showMessageDialog(null, "Formato invalido");
-            }else{
-        Registros a=new Registros(nom,apepa,usu,con,cel,correo);
-                System.out.println(correo);
-        a.registrarUsuario();
-            abrirIndex();
-         }
-            }else{
-        JOptionPane.showMessageDialog(null, "Contraseña incorrecta repita acción");
+            // Patrón para validar el email    
+        } else {
+            if (con.equalsIgnoreCase(con2)) {
+                if (cel.length() > 10 || cel.length() < 10) {
+                    JOptionPane.showMessageDialog(null, "Formato de telèfono invalido", "Datos erroneos", 0);
+                } else {
+                    Pattern pattern = Pattern
+                            .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                    // El email a validar
+                    String email = jtfCorreo.getText();
+                    Matcher mather = pattern.matcher(email);
+                    if (mather.find() == true) {
+                        Registros a = new Registros(nom, apepa, usu, con, cel, correo);
+                        System.out.println(correo);
+                        a.registrarUsuario();
+                        abrirIndex();
+                        ///JOptionPane.showMessageDialog(null,"El email ingresado es válido.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El email ingresado es inválido.");
+                    }
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta repita acción");
+
+            }
 
         }
-        }
-        
+
     }//GEN-LAST:event_jbtAgregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -220,38 +241,38 @@ public class Registro extends javax.swing.JFrame {
 
     private void jtfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyTyped
         // TODO add your handling code here:
-        char car=evt.getKeyChar();
-        if(Character.isDigit(car)){
-        getToolkit().beep();
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "Solo letras","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo letras", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfNombreKeyTyped
 
     private void jtfApepatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApepatKeyTyped
         // TODO add your handling code here:
-        char car=evt.getKeyChar();
-        if(Character.isDigit(car)){
-        getToolkit().beep();
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "Solo letras","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo letras", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jtfApepatKeyTyped
 
     private void jtfNumeroTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNumeroTelefonoKeyTyped
         // TODO add your handling code here:
-        char car=evt.getKeyChar();
-        if(Character.isLetter(car)){
-       getToolkit().beep();;
-       evt.consume();
-       JOptionPane.showMessageDialog(null, "Solo numeros","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car)) {
+            getToolkit().beep();;
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo numeros", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        char esp=evt.getKeyChar();
-        if(Character.isSpace(car)){
-        jtfApepat.setText(null);
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "No se aceptan espacios","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char esp = evt.getKeyChar();
+        if (Character.isSpace(car)) {
+            jtfApepat.setText(null);
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se aceptan espacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfNumeroTelefonoKeyTyped
 
@@ -261,38 +282,41 @@ public class Registro extends javax.swing.JFrame {
 
     private void jtfUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfUsuarioKeyTyped
         // TODO add your handling code here:
-        char esp=evt.getKeyChar();
-        if(Character.isSpace(esp)){
-        jtfUsuario.setText(null);
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "No se aceptan espacios","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char esp = evt.getKeyChar();
+        if (Character.isSpace(esp)) {
+            jtfUsuario.setText(null);
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se aceptan espacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfUsuarioKeyTyped
 
     private void jpfPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpfPasswordKeyTyped
         // TODO add your handling code here:
-        char esp=evt.getKeyChar();
-        if(Character.isSpace(esp)){
-        jtfApepat.setText(null);
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "No se aceptan espacios","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char esp = evt.getKeyChar();
+        if (Character.isSpace(esp)) {
+            jtfApepat.setText(null);
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se aceptan espacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jpfPasswordKeyTyped
 
     private void jpfPasswordRepetibleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpfPasswordRepetibleKeyTyped
         // TODO add your handling code here:
-        char esp=evt.getKeyChar();
-        if(Character.isSpace(esp)){
-        jtfApepat.setText(null);
-        evt.consume();
-        JOptionPane.showMessageDialog(null, "No se aceptan espacios","Advertencia",JOptionPane.WARNING_MESSAGE);
+        char esp = evt.getKeyChar();
+        if (Character.isSpace(esp)) {
+            jtfApepat.setText(null);
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se aceptan espacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jpfPasswordRepetibleKeyTyped
+
+    private void jtfNumeroTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNumeroTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNumeroTelefonoActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PanelIMG2;
@@ -317,8 +341,8 @@ public class Registro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void abrirIndex() {
-            this.setVisible(false);
-            Index b=new Index();
-            b.setVisible(true);
+        this.setVisible(false);
+        Index b = new Index();
+        b.setVisible(true);
     }
 }

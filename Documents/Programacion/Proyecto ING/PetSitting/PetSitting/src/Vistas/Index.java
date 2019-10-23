@@ -138,7 +138,7 @@ public class Index extends javax.swing.JFrame {
         Registros a= new Registros(usua, con);
         a.iniciarS();
         if (a.iniciarS()=="no") {
-            JOptionPane.showMessageDialog(null, "Datos erroneos");
+            JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectas", "Datos erroneos", 0);
         }if(a.iniciarS()=="si"){
             Registros c=new Registros(usua,con);
             this.setVisible(false);

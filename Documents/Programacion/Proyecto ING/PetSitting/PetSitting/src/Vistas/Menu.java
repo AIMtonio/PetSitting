@@ -307,7 +307,6 @@ public class Menu extends javax.swing.JFrame {
         int statusPro=0;
         c.consultarIDmascota();
         String ver = c.p;
-        //System.out.println(ver);
         if (ver == null) {
             procesoregistro();
             double pesoReal = Double.parseDouble(jtfPeso.getText());
@@ -371,7 +370,7 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
             + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
                     + "conecta tu dispositivo para configurarlo.\n"
-                    + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente"
+                    + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente "
                     + "manda el valor correspondiente");
             
                        
