@@ -1,5 +1,0 @@
-drop database petsitting;
-create database petsitting;
-use petsitting;
-source C:\Users\Liz Jimenez\Documents\GitHub\PetSitting\Documents\Proyecto ING\base de datos pet sitting corregida.sql
-	C:\Users\Kay Soto\Documents\GitHub\PetSitting\Documents\Proyecto ING\base de datos pet sitting corregida.sql
