@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author Liz Jimenez
  */
 public class Registros {
-    static String nombre,apP,usuario, contra, correo;
+    static String nombre,apP,usuario, contra, correo, id;
     String cel, nomM, tipo, raza, enfermedad, actividad, buscarmas;
     double peso, edad, alimento;
     public String pruebar;
@@ -117,6 +117,14 @@ public class Registros {
         Registros.contra = contra;
     }
 
+    public String getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
+    }
+
     public void registrarUsuario(){
         try{
             Conexion obj= new Conexion();
@@ -187,7 +195,7 @@ public class Registros {
         try{
             Conexion obj= new Conexion();
             Statement sentencia=obj.getCon().createStatement();
-            String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"','"+enfermedad+"',now(),'"+tipo+"',1,1);";
+            String sql="insert into mascota values(null,'"+nomM+"','"+edad+"','"+peso+"','"+raza+"','"+enfermedad+"','"+actividad+"',now(),'"+tipo+"',1,1);";
             sentencia.execute(sql);
             JOptionPane.showMessageDialog(null, "Producto activado, se registro tu mascota");
         }catch(Exception a){
@@ -221,9 +229,10 @@ public class Registros {
             nomM=registro.getString(2);
             edad=registro.getDouble(3);
             peso=registro.getDouble(4);
-            raza=registro.getString(5);
             enfermedad=registro.getString(6);
-            tipo=registro.getString(8);
+            tipo=registro.getString(9);
+            raza=registro.getString(5);
+            actividad=registro.getString(7);
         }
         }
         }catch(Exception a){
@@ -243,7 +252,7 @@ public class Registros {
                     + "raza='"+raza+"',"
                     + "enfermedad='"+enfermedad+"',"
                     + "tipo_masc='"+tipo+"'"
-                    + "where nombre='"+nomM+"';";
+                    + "where id_mascota='"+p+"';";
             sentencia.execute(sql);
             JOptionPane.showMessageDialog(null,"Los datos de tu mascota se a modificado");
         }catch(Exception a){

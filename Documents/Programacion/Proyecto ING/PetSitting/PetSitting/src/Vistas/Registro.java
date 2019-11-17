@@ -66,6 +66,11 @@ public class Registro extends javax.swing.JFrame {
         jlbPassword.setBounds(440, 260, 280, 40);
 
         jtfNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNombreActionPerformed(evt);
+            }
+        });
         jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfNombreKeyTyped(evt);
@@ -313,6 +318,10 @@ public class Registro extends javax.swing.JFrame {
     private void jtfNumeroTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNumeroTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfNumeroTelefonoActionPerformed
+
+    private void jtfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreActionPerformed
 
     /**
      * @param args the command line arguments

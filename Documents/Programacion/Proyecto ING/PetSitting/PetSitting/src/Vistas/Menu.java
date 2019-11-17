@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Clases.Conexion;
@@ -17,16 +16,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import panamahitek.Arduino.PanamaHitek_Arduino;
 
-
 public class Menu extends javax.swing.JFrame {
-    
+
     PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
     Controls c = new Controls();
 
     String usuario;
     String contra;
 
- 
     public Menu() {
         initComponents();
         jlbUsuario.setText(Registros.getUsuario());
@@ -46,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jComboBoxPorts.removeAllItems();
         if (Arduino.getPortsAvailable() > 0) {
             List lst = Arduino.getSerialPorts();
-            for(int i=0; i<lst.size(); i++){
+            for (int i = 0; i < lst.size(); i++) {
                 jComboBoxPorts.addItem(lst.get(i));
             }
             //Arduino.getSerialPorts().forEach(i -> jComboBoxPorts.addItem(i));
@@ -116,6 +113,19 @@ public class Menu extends javax.swing.JFrame {
         jpnMenu.add(jlbPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, 70, 40));
 
         jtfNombreMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtfNombreMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNombreMascotaActionPerformed(evt);
+            }
+        });
+        jtfNombreMascota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfNombreMascotaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNombreMascotaKeyTyped(evt);
+            }
+        });
         jpnMenu.add(jtfNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 230, 38));
 
         jcbTipoMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -137,6 +147,11 @@ public class Menu extends javax.swing.JFrame {
         jpnMenu.add(jlbTipoMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 210, 40));
 
         jtfPeso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtfPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPesoKeyTyped(evt);
+            }
+        });
         jpnMenu.add(jtfPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 290, 230, 44));
 
         jcbRaza.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -299,85 +314,102 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbtEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEnviarActionPerformed
         // TODO add your handling code here:
-        String codigo=null;
-        int validarSiExisteCodigo=0;
+        String codigo = null;
+        int validarSiExisteCodigo = 0;
         Conexion con = new Conexion();
         Registros c = new Registros();
-        int idCliente=0;
-        int statusPro=0;
-        c.consultarIDmascota();
-        String ver = c.p;
-        if (ver == null) {
-            procesoregistro();
-            double pesoReal = Double.parseDouble(jtfPeso.getText());
-            double pesoConvertido = pesoReal * 1000;
-            double porcentaje = 0.025;
-            double pesoCalculado = pesoConvertido * porcentaje;
-            JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
-            + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
-                    + "conecta tu dispositivo para configurarlo.\n"
-                    + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente"
-                    + "manda el valor correspondiente");
-             limpiarframe();
+        int idCliente = 0;
+        int statusPro = 0;
+        // Validacion campos llenos 
+        if (jtfNombreMascota.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Inserte nombre");
+        } else if (jcbTipoMascota.getSelectedItem().equals("-Seleccione-")) {
+            JOptionPane.showMessageDialog(null, "Seleccione tipo");
+        } else if (jcbRaza.getSelectedItem().equals("-Seleccione-")) {
+            JOptionPane.showMessageDialog(null, "Seleccione raza");
+        } else if (jcbEdad.getSelectedItem().equals("-Seleccione-")) {
+            JOptionPane.showMessageDialog(null, "Seleccione edad");
+        } else if (jtfPeso.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Inserte peso");
+        } else if (jcenfermedad.getSelectedItem().equals("-Seleccione-")) {
+            JOptionPane.showMessageDialog(null, "Seleccione enfermendad");
+        } else if (jcbActividad.getSelectedItem().equals("-Seleccione-")) {
+            JOptionPane.showMessageDialog(null, "Seleccione Actividad");
         } else {
-            int x = JOptionPane.showConfirmDialog(null, "Solo se permite una mascota por dispositivo."
-                    + "¿Cuentas con un nuevo dispositivo?");
-            if (x == 0) {
-                codigo = JOptionPane.showInputDialog(null, "Ingresa el código de tu producto:");
-                try {
-                    final String sql = "{call validarCodigoProducto(?)}";
-                    CallableStatement cs = con.getCon().prepareCall(sql);
-                    cs.setString(1, codigo);
-                    ResultSet rs=cs.executeQuery();
-                    while (rs.next()) {                     
-                     validarSiExisteCodigo=rs.getInt(1); 
-                     statusPro=rs.getInt(2);
-                 }
-                } catch (Exception e) {
-                }
-                try {
-                        final String sql="{call obtenerIdCliente(?)}";
-                        CallableStatement cs=con.getCon().prepareCall(sql);
-                        cs.setString(1,usuario);
-                        ResultSet rs=cs.executeQuery();
-                        while (rs.next()) {                            
-                            idCliente=rs.getInt(1);
+            c.consultarIDmascota();
+            String ver = c.p;
+            if (ver == null) {
+                procesoregistro();
+                double pesoReal = Double.parseDouble(jtfPeso.getText());
+                double pesoConvertido = pesoReal * 1000;
+                double porcentaje = 0.025;
+                double pesoCalculado = pesoConvertido * porcentaje;
+                JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
+                        + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
+                        + "conecta tu dispositivo para configurarlo.\n"
+                        + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente"
+                        + "manda el valor correspondiente");
+                limpiarframe();
+            } else {
+                int x = JOptionPane.showConfirmDialog(null, "Solo se permite una mascota por dispositivo."
+                        + "¿Cuentas con un nuevo dispositivo?");
+                if (x == 0) {
+                    codigo = JOptionPane.showInputDialog(null, "Ingresa el código de tu producto:");
+                    try {
+                        final String sql = "{call validarCodigoProducto(?)}";
+                        CallableStatement cs = con.getCon().prepareCall(sql);
+                        cs.setString(1, codigo);
+                        ResultSet rs = cs.executeQuery();
+                        while (rs.next()) {
+                            validarSiExisteCodigo = rs.getInt(1);
+                            statusPro = rs.getInt(2);
                         }
                     } catch (Exception e) {
                     }
-                if(validarSiExisteCodigo!=0){//si si existe el codigo.
-                   if(statusPro!=0){
-                       JOptionPane.showMessageDialog(null, "Este ya ha sido activado" );
-                   }else{
-                       try {
-                           final String sql="{call cambiarEstadoProducto(?,?)}";
-                           CallableStatement cs=con.getCon().prepareCall(sql);
-                           cs.setString(1, codigo);
-                           cs.setInt(2, idCliente);
-                           cs.executeUpdate();
-                       } catch (Exception e) {
-                       }
-                
-                       /*
+                    try {
+                        final String sql = "{call obtenerIdCliente(?)}";
+                        CallableStatement cs = con.getCon().prepareCall(sql);
+                        cs.setString(1, usuario);
+                        ResultSet rs = cs.executeQuery();
+                        while (rs.next()) {
+                            idCliente = rs.getInt(1);
+                        }
+                    } catch (Exception e) {
+                    }
+                    if (validarSiExisteCodigo != 0) {//si si existe el codigo.
+                        if (statusPro != 0) {
+                            JOptionPane.showMessageDialog(null, "Este ya ha sido activado");
+                        } else {
+                            try {
+                                final String sql = "{call cambiarEstadoProducto(?,?)}";
+                                CallableStatement cs = con.getCon().prepareCall(sql);
+                                cs.setString(1, codigo);
+                                cs.setInt(2, idCliente);
+                                cs.executeUpdate();
+                            } catch (Exception e) {
+                            }
+
+                            /*
                        Aqui mete lo del registro por fa.
                        Si puedes con validaciones.
-                       */
-                       procesoregistro();
-            double pesoReal = Double.parseDouble(jtfPeso.getText());
-            double pesoConvertido = pesoReal * 1000;
-            double porcentaje = 0.025;
-            double pesoCalculado = pesoConvertido * porcentaje;
-            JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
-            + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
-                    + "conecta tu dispositivo para configurarlo.\n"
-                    + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente "
-                    + "manda el valor correspondiente");
-            
-                       
-                   } 
-                }else{//si no existe
-                     JOptionPane.showMessageDialog(null, " Este producto no existe");
+                             */
+                            procesoregistro();
+                            double pesoReal = Double.parseDouble(jtfPeso.getText());
+                            double pesoConvertido = pesoReal * 1000;
+                            double porcentaje = 0.025;
+                            double pesoCalculado = pesoConvertido * porcentaje;
+                            JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
+                                    + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
+                                    + "conecta tu dispositivo para configurarlo.\n"
+                                    + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente "
+                                    + "manda el valor correspondiente");
+                            limpiarframe();
+                        }
+                    } else {//si no existe
+                        JOptionPane.showMessageDialog(null, " Este producto no existe");
+                    }
                 }
+
             }
 
         }
@@ -401,6 +433,11 @@ public class Menu extends javax.swing.JFrame {
         limpiarframe();
         Registros q = new Registros();
         q.consultarMascota();
+        if(q.getNomM()== null){
+            JOptionPane.showMessageDialog(null, "Nombre invalido");
+            limpiarframe();
+        }else{
+            
         jtfNombreMascota.setText(q.getNomM());
         jcbTipoMascota.setSelectedItem(q.getTipo());
         jcbRaza.setSelectedItem(q.getRaza());
@@ -412,66 +449,73 @@ public class Menu extends javax.swing.JFrame {
             jcbEdad.setSelectedItem("de 6 a 11 meses");
         } else if (edad == 1.0) {
             jcbEdad.setSelectedItem("1");
-        }else if (edad == 2.0) {
+        } else if (edad == 2.0) {
             jcbEdad.setSelectedItem("2");
-        }else if (edad == 3.0) {
+        } else if (edad == 3.0) {
             jcbEdad.setSelectedItem("3");
-        }else if (edad == 4.0) {
+        } else if (edad == 4.0) {
             jcbEdad.setSelectedItem("4");
-        }else if (edad == 5.0) {
+        } else if (edad == 5.0) {
             jcbEdad.setSelectedItem("5");
-        }else if (edad == 6.0) {
+        } else if (edad == 6.0) {
             jcbEdad.setSelectedItem("6");
-        }else if (edad == 7.0) {
+        } else if (edad == 7.0) {
             jcbEdad.setSelectedItem("7");
-        }else if (edad == 8.0) {
+        } else if (edad == 8.0) {
             jcbEdad.setSelectedItem("8");
-        }else if (edad == 9.0) {
+        } else if (edad == 9.0) {
             jcbEdad.setSelectedItem("9");
-        }else if (edad == 10.0) {
+        } else if (edad == 10.0) {
             jcbEdad.setSelectedItem("10");
         }
         jtfPeso.setText(String.valueOf(q.getPeso()));
         jcenfermedad.setSelectedItem(q.getEnfermedad());
+        jcbActividad.setSelectedItem(q.getActividad());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Registros q = new Registros();
         if (jButton2.getText().equalsIgnoreCase("Modificar")) {
-            limpiarframe();
             q.consultarMascota();
+             if(q.getNomM()== null){
+            JOptionPane.showMessageDialog(null, "Nombre invalido");
+            limpiarframe();
+            }else{
             jtfNombreMascota.setText(q.getNomM());
             jcbTipoMascota.setSelectedItem(q.getTipo());
             jcbRaza.setSelectedItem(q.getRaza());
             double edad = q.getEdad();
             System.out.println(edad);
-           if (edad == 0.3) {
-            jcbEdad.setSelectedItem("menos de 6 meses");
-        } else if (edad == 0.8) {
-            jcbEdad.setSelectedItem("de 6 a 11 meses");
-        } else if (edad == 1.0) {
-            jcbEdad.setSelectedItem("1");
-        }else if (edad == 2.0) {
-            jcbEdad.setSelectedItem("2");
-        }else if (edad == 3.0) {
-            jcbEdad.setSelectedItem("3");
-        }else if (edad == 4.0) {
-            jcbEdad.setSelectedItem("4");
-        }else if (edad == 5.0) {
-            jcbEdad.setSelectedItem("5");
-        }else if (edad == 6.0) {
-            jcbEdad.setSelectedItem("6");
-        }else if (edad == 7.0) {
-            jcbEdad.setSelectedItem("7");
-        }else if (edad == 8.0) {
-            jcbEdad.setSelectedItem("8");
-        }else if (edad == 9.0) {
-            jcbEdad.setSelectedItem("9");
-        }else if (edad == 10.0) {
-            jcbEdad.setSelectedItem("10");
-        }
+            if (edad == 0.3) {
+                jcbEdad.setSelectedItem("menos de 6 meses");
+            } else if (edad == 0.8) {
+                jcbEdad.setSelectedItem("de 6 a 11 meses");
+            } else if (edad == 1.0) {
+                jcbEdad.setSelectedItem("1");
+            } else if (edad == 2.0) {
+                jcbEdad.setSelectedItem("2");
+            } else if (edad == 3.0) {
+                jcbEdad.setSelectedItem("3");
+            } else if (edad == 4.0) {
+                jcbEdad.setSelectedItem("4");
+            } else if (edad == 5.0) {
+                jcbEdad.setSelectedItem("5");
+            } else if (edad == 6.0) {
+                jcbEdad.setSelectedItem("6");
+            } else if (edad == 7.0) {
+                jcbEdad.setSelectedItem("7");
+            } else if (edad == 8.0) {
+                jcbEdad.setSelectedItem("8");
+            } else if (edad == 9.0) {
+                jcbEdad.setSelectedItem("9");
+            } else if (edad == 10.0) {
+                jcbEdad.setSelectedItem("10");
+            }
             jtfPeso.setText(String.valueOf(q.getPeso()));
             jcenfermedad.setSelectedItem(q.getEnfermedad());
+            jcbActividad.setSelectedItem(q.getActividad());
+             }
             if (jtfNombreMascota.getText().equals("")) {
                 jButton2.setText("Modificar");
             } else {
@@ -479,6 +523,19 @@ public class Menu extends javax.swing.JFrame {
             }
 
         } else {
+             if (jtfNombreMascota.getText().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Inserte nombre");
+            } else if (jcbTipoMascota.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Seleccione tipo");
+            } else if (jcbRaza.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Seleccione raza");
+            } else if (jcbEdad.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Seleccione edad");
+            } else if (jtfPeso.getText().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Inserte peso");
+            } else if (jcenfermedad.getSelectedItem().equals("-Seleccione-")) {
+                JOptionPane.showMessageDialog(null, "Inserte enfermendad");
+            } else {
             String mascota = jtfNombreMascota.getText();
             String tipo = String.valueOf(jcbTipoMascota.getSelectedItem());
             String raza = String.valueOf(jcbRaza.getSelectedItem());
@@ -494,20 +551,9 @@ public class Menu extends javax.swing.JFrame {
             }
             Double peso = Double.parseDouble(jtfPeso.getText());
             String enfermedad = String.valueOf(jcenfermedad.getSelectedItem());
-            if (jtfNombreMascota.getText().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Inserte nombre");
-            } else if (jcbTipoMascota.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione tipo");
-            } else if (jcbRaza.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione raza");
-            } else if (jcbEdad.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione edad");
-            } else if (jtfPeso.getText().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Inserte peso");
-            } else if (jcenfermedad.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Inserte enfermendad");
-            } else {
+           
                 Registros r = new Registros(mascota, tipo, raza, edad, peso, enfermedad, String.valueOf(jcbActividad.getSelectedItem()));
+                r.consultarIDmascota();
                 r.modificarMascota();
                 jButton2.setText("Modificar");
                 limpiarframe();
@@ -585,6 +631,40 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonApagarActionPerformed
 
+    private void jtfNombreMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreMascotaActionPerformed
+
+    private void jtfNombreMascotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreMascotaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreMascotaKeyPressed
+
+    private void jtfNombreMascotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreMascotaKeyTyped
+        // TODO add your handling code here:
+        char esp = evt.getKeyChar();
+        if (Character.isSpace(esp)) {
+            jtfNombreMascota.setText(null);
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se aceptan espacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jtfNombreMascotaKeyTyped
+
+    private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
+        // TODO add your handling code here:
+         char car = evt.getKeyChar();
+        if (Character.isLetter(car)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo numeros", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+         char esp = evt.getKeyChar();
+        if (Character.isSpace(car)) {
+            jtfPeso.setText(null);
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No se aceptan espacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jtfPesoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -637,14 +717,14 @@ public class Menu extends javax.swing.JFrame {
             a.printStackTrace();
         }
     }
-    
+
     private void ObtenerRazas(String tipo) {
         jcbRaza.removeAllItems();
         jcbRaza.addItem("-Seleccione-");
         try {
             Conexion obj = new Conexion();
             Statement sentencia = obj.getCon().createStatement();
-            String sql = "SELECT raza FROM tipo WHERE tipo_mascota='"+tipo+"' ORDER BY raza;";
+            String sql = "SELECT raza FROM tipo WHERE tipo_mascota='" + tipo + "' ORDER BY raza;";
             ResultSet registro = sentencia.executeQuery(sql);
             while (registro.next()) {
                 jcbRaza.addItem(registro.getString(1));
@@ -660,43 +740,30 @@ public class Menu extends javax.swing.JFrame {
         jcbRaza.setSelectedItem("-Seleccione-");
         jcbEdad.setSelectedItem("-Seleccione-");
         jtfPeso.setText("");
+        jcbActividad.setSelectedItem("-Seleccione-");
+        jcenfermedad.setSelectedItem("-Seleccione-");
     }
 
     private void procesoregistro() {
         String edadTemportal = null;
         String mascota = jtfNombreMascota.getText();
-            String tipo = String.valueOf(jcbTipoMascota.getSelectedItem());
-            String raza = String.valueOf(jcbRaza.getSelectedItem());
-            String enfermedad = String.valueOf(jcenfermedad.getSelectedItem());
-            double edad = 0;
-            edadTemportal = (String.valueOf(jcbEdad.getSelectedItem()));
-            if (edadTemportal.equalsIgnoreCase("menos de 6 meses")) {
-                edad = 0.3;
-            } else if (edadTemportal.equalsIgnoreCase("de 6 a 11 meses")) {
-                edad = 0.8;
-            } else {
-                edad = Double.parseDouble(edadTemportal);
-            }
-            Double peso = Double.parseDouble(jtfPeso.getText());
-            if (jtfNombreMascota.getText().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Inserte nombre");
-            } else if (jcbTipoMascota.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione tipo");
-            } else if (jcbRaza.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione raza");
-            } else if (jcbEdad.getSelectedItem().equals("-Seleccione-")) {
-                JOptionPane.showMessageDialog(null, "Seleccione edad");
-            } else if (jtfPeso.getText().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Inserte peso");
+        String tipo = String.valueOf(jcbTipoMascota.getSelectedItem());
+        String raza = String.valueOf(jcbRaza.getSelectedItem());
+        String enfermedad = String.valueOf(jcenfermedad.getSelectedItem());
+        double edad = 0;
+        edadTemportal = (String.valueOf(jcbEdad.getSelectedItem()));
+        if (edadTemportal.equalsIgnoreCase("menos de 6 meses")) {
+            edad = 0.3;
+        } else if (edadTemportal.equalsIgnoreCase("de 6 a 11 meses")) {
+            edad = 0.8;
+        } else {
+            edad = Double.parseDouble(edadTemportal);
+        }
+        Double peso = Double.parseDouble(jtfPeso.getText());
+        Registros r = new Registros(mascota, tipo, raza, edad, peso,
+                    enfermedad, String.valueOf(jcbActividad.getSelectedItem()));
+            r.registrarMascota();
 
-            } else {
-                Registros r = new Registros(mascota, tipo, raza, edad, peso, 
-                        enfermedad, String.valueOf(jcbActividad.getSelectedItem()));
-                r.registrarMascota();
-                
-               
-                
-               
-            }
+        
     }
 }
