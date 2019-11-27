@@ -54,11 +54,9 @@ public class Email {
     }
     
     public boolean enviarCorreo(String para, String mensaje, String asunto){
-       
             try{
                 //String host = "smtp.gmail.com";
                 String host = "smtp-mail.outlook.com";
-                
                 Properties prop = System.getProperties();
                 
                 prop.put("mail.smtp.starttls.enable","true");
@@ -69,41 +67,16 @@ public class Email {
                 prop.put("mail.smtp.auth","true");
                 
                 Session sesion = Session.getDefaultInstance(prop,null);
-                
                 MimeMessage message = new MimeMessage(sesion);
-                
                 message.setFrom(new InternetAddress(de));
-                
-                /*
-                    
-                    NOTA: para enviar correo electronico masivo
-                
-                    InternetAddress[] direcciones = new InternetAddress[para.length];
-                    for(int i=0;i<para.length;i++){
-                        direcciones[i] = new InternetAddress(para[i]);
-                    }
-                
-                    for(int i=0;i<direcciones.length;i++){
-                        message.addRecipient(Message.RecipientType.TO, direcciones[i]);
-                    }
-                
-                */
-                
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(para));
-                
                 message.setSubject(asunto);
                 message.setText(mensaje);
-                
                 Transport transport = sesion.getTransport("smtp");
-                
                 transport.connect(host,de,clave);
-                
                 transport.sendMessage(message, message.getAllRecipients());
-                
                 transport.close();
-                
                 enviado = true;
-                
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -123,4 +96,18 @@ public class Email {
 //            System.out.println("No se encontro el correo, favor de revisar los datos.");
 //        }
 //    }
-}
+                    /*
+                    
+                    NOTA: para enviar correo electronico masivo
+                
+                    InternetAddress[] direcciones = new InternetAddress[para.length];
+                    for(int i=0;i<para.length;i++){
+                        direcciones[i] = new InternetAddress(para[i]);
+                    }
+                
+                    for(int i=0;i<direcciones.length;i++){
+                        message.addRecipient(Message.RecipientType.TO, direcciones[i]);
+                    }
+                
+                */
+}//fin de la clase
