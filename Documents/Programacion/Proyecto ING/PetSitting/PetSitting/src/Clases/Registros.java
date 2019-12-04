@@ -237,7 +237,7 @@ public class Registros {
         }
         }catch(Exception a){
             a.printStackTrace();
-            JOptionPane.showInputDialog(null,"No se encontro a la mascota con ese nombre");
+            JOptionPane.showInputDialog(null,"No se encontró a la mascota con ese nombre");
         }
         
     }

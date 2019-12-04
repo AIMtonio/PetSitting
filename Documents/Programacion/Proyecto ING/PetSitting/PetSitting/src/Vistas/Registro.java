@@ -204,14 +204,14 @@ public class Registro extends javax.swing.JFrame {
         } else if (jtfNumeroTelefono.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte celular");
         } else if (jpfPasswordRepetible.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Inserte Confirmacion de contraseña");
+            JOptionPane.showMessageDialog(null, "Inserte Confirmación de contraseña");
         } else if (jtfCorreo.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Inserte el correo");
             // Patrón para validar el email    
         } else {
             if (con.equalsIgnoreCase(con2)) {
                 if (cel.length() > 10 || cel.length() < 10) {
-                    JOptionPane.showMessageDialog(null, "Formato de telèfono invalido", "Datos erroneos", 0);
+                    JOptionPane.showMessageDialog(null, "Formato de teléfono inválido", "Datos erroneos", 0);
                 } else {
                     Pattern pattern = Pattern
                             .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

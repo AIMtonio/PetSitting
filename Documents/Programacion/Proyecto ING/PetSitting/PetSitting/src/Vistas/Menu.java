@@ -345,9 +345,9 @@ public class Menu extends javax.swing.JFrame {
                 double porcentaje = 0.025;
                 double pesoCalculado = pesoConvertido * porcentaje;
                 JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
-                        + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
+                        + pesoCalculado + "g. Esta cantidad estará dividida en 2 porciones durante el día\n"
                         + "conecta tu dispositivo para configurarlo.\n"
-                        + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente"
+                        + "Conectalo a tu equipo y selecciona en el bóton conectar y posteriormente"
                         + "manda el valor correspondiente");
                 limpiarframe();
             } else {
@@ -399,9 +399,9 @@ public class Menu extends javax.swing.JFrame {
                             double porcentaje = 0.025;
                             double pesoCalculado = pesoConvertido * porcentaje;
                             JOptionPane.showMessageDialog(null, "Tu mascota requiere: "
-                                    + pesoCalculado + "g. Esta cantidad estara dividida en 2 porciones durante el dia\n"
+                                    + pesoCalculado + "g. Esta cantidad estará dividida en 2 porciones durante el día\n"
                                     + "conecta tu dispositivo para configurarlo.\n"
-                                    + "Conectalo a tu equipo y selecciona en el boton conectar y posteriormente "
+                                    + "Conectalo a tu equipo y selecciona en el bóton conectar y posteriormente "
                                     + "manda el valor correspondiente");
                             limpiarframe();
                         }
